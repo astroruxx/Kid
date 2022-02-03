@@ -1,0 +1,29 @@
+{
+    "name": "djs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "nodemon index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "ascii-table": "^0.0.9",
+        "axios": "^0.25.0",
+        "canvacord": "^5.2.3",
+        "chalk": "^5.0.0",
+        "chalk-animation": "^1.6.0",
+        "discord-backup": "^3.0.1",
+        "discord-logs": "^2.0.1",
+        "discord-xp": "^1.1.16",
+        "discord.js": "^13.6.0",
+        "glob": "^7.1.7",
+        "moment": "^2.29.1",
+        "mongoose": "^6.0.2",
+        "reconlx": "^2.5.2",
+        "ultrax": "^1.9.5"
+    }
+}
