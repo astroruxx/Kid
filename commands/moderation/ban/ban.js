@@ -15,7 +15,9 @@ module.exports = {
 
         const user = message.mentions.members.first();
         const reason = args.slice(1).join(' ');
-        if (!reason) return message.channel.send('Tell me a reason!');
+        if (!reason) return message.channel.send('What is the reason?');
+        const embed = new MessageEmbed()
+        .setImage(`${user.displayName} was banned`)
 
         if (user) {
 

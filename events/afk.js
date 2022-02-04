@@ -24,7 +24,7 @@ client.on('messageCreate', async (message) => {
     const gData = afk.get(message.author.id)
     const afkEm = new MessageEmbed()
     .setTitle(`AFK removed`)
-    .setDescription(` i have removed your afk`)
+    .setDescription(`i have removed your afk`)
     .setColor('RANDOM')
     .setThumbnail(`https://th.bing.com/th/id/R.3e9d42d0819b7c53c18be3b413ed74ed?rik=0H8jSCCwz9rceA&riu=http%3a%2f%2fimage.en.yibada.com%2fdata%2fthumbs%2ffull%2f59930%2f685%2f0%2f0%2f0%2fjames-spader-played-ultron-in-joss-whedons-avengers-age-of-ultron.jpg&ehk=EcAcCDYLC2%2fn6WY4Gt3renew7YB%2bIKpEkyT%2fgKdtMZk%3d&risl=&pid=ImgRaw&r=0`)
     if (gData) {
