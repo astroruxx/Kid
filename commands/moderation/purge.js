@@ -16,7 +16,7 @@ module.exports = {
     run: async (client, message, args, Discord) => {
         try {
             let delamount = args[0];
-            if (isNaN(delamount) || parseInt(delamount <= 0)) return message.reply('Error:')
+            if (isNaN(delamount) || parseInt(delamount <= 0)) return message.reply({content: 'Please use the correct format', ephemeral: true})
 
             if (parseInt(delamount) > 100) return message.reply('you cant delete over 300 messages')
 

@@ -1,6 +1,6 @@
 const { Client, Collection, MessageEmbed, Message } = require("discord.js");
 const usersMap = new Map();
-const LIMIT = 200000;
+const LIMIT = 5;
 const TIME = 1000000;
 const DIFF = 5000;
 const fs = require('fs')
@@ -18,21 +18,11 @@ logs(client, {
     debug: true
 });
 
-ultrax.boost.start(client, '937069384734769192')
-client.on('boost', async booster => {
-    const boostImage = ultrax.boostImage
-    let avatar = booster.user.displayAvatarURL({ dynamic: false})
-    let boostCard = await boostImage(avatar)
-	const boostchannel = client.channels.cache.get('938485403856539655')
-	boostchannel.send({ content: `${booster} boosted the server!!`, files: [ boostCard ] })
-
-})
 
 
 
 
 
-// replace the files accordi
 
 client.commands = new Collection()
 client.config = require('./config.json')

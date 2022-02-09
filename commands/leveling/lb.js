@@ -15,7 +15,9 @@ module.exports = {
     run: async (client, message, args, Discord) => {
         const rawLeaderboard = await Levels.fetchLeaderboard(message.guild.id, 10); 
         const leaderboard = await Levels.computeLeaderboard(client, rawLeaderboard, true);
-        if (rawLeaderboard.length < 1) return message.reply('Nobody is in the leaderboard');
+        const naembed = new MessageEmbed()
+        .setTitle(`${user} there is nobody in the leaderboard, or/and this command is malifunctioning`)
+        if (rawLeaderboard.length < 1) return message.reply({embeds: [naembed]});
 
         const l = leaderboard.map(e => `${e.position}. ${e.username}#${e.discriminator} -> Level: ${e.level} -> Xp: ${e.xp.toString()}`); 
         const embed = new MessageEmbed()
