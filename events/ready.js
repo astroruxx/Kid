@@ -5,12 +5,12 @@ const arrayOfStatus = [
     'https://astrorux.github.io/',
     'The Avengers',
     'Dms',
-    'Netflix',
-    'The Dead'
+    'Captain America',
+    'For Missions'
 ]
 
 client.on('ready', () =>
-    console.log(`${client.user.tag} is up and ready to go!`),
+    console.log(`${client.user.tag} is ready for more missions`),
     setInterval(() => {
         client.user.setPresence({ activities: [{ name: arrayOfStatus [Math.floor(Math.random() * arrayOfStatus.length) ], type: 'WATCHING' }]})
         client.user.setStatus('dnd')

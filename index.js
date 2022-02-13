@@ -1,10 +1,5 @@
 const { Client, Collection, MessageEmbed, Message } = require("discord.js");
-const usersMap = new Map();
-const LIMIT = 5;
-const TIME = 1000000;
-const DIFF = 5000;
 const fs = require('fs')
-const ultrax = require('ultrax')
 
 const client = new Client({
     intents: 32767,
@@ -18,25 +13,10 @@ logs(client, {
     debug: true
 });
 
-
-
-
-
-
-
-client.commands = new Collection()
-client.config = require('./config.json')
-client.prefix = client.config.prefix
-client.aliases = new Collection()
-
-
-// Global Variables
-client.commands = new Collection();
-client.slashCommands = new Collection();
-client.config = require("./config.json");
-
-
-
+const usersMap = new Map();
+const LIMIT = 5;
+const TIME = 10000000;
+const DIFF = 3000;
 
 client.on('message', async(message) => {
     if(message.author.bot) return;
@@ -50,7 +30,7 @@ client.on('message', async(message) => {
         if(difference > DIFF) {
             clearTimeout(timer);
             console.log('Cleared Timeout');
-            userData.msgCount = 10;
+            userData.msgCount = 1;
             userData.lastMessage = message;
             userData.timer = setTimeout(() => {
                 usersMap.delete(message.author.id);
@@ -61,7 +41,7 @@ client.on('message', async(message) => {
         else {
             ++msgCount;
             if(parseInt(msgCount) === LIMIT) {
-                let muterole = message.guild.roles.cache.find(role => role.id === '937071229532254307');
+                let muterole = message.guild.roles.cache.find(role => role.name === 'muted');
                 if(!muterole) {
                     try{
                         muterole = await message.guild.roles.create({
@@ -78,11 +58,19 @@ client.on('message', async(message) => {
                         console.log(e)
                     }
                 }
+                const mute = new MessageEmbed()
+                .setColor('RANDOM')
+                .setTitle(`you have been muted for ${TIME} seconds`)
+                .setImage(`${message.author.displayAvatarURL({dynamic: true})}`)
+                const unute = new MessageEmbed()
+                .setColor('RANDOM')
+                .setTitle(`you have been unmuted please behave or a mod will ban you if you have been muted to many times!`)
+                .setImage(`${message.author.displayAvatarURL({dynamic: true})}`)
                 message.member.roles.add(muterole);
-                message.member.send ('you have been muted!');
+                message.author.send({embeds: [mute]});
                 setTimeout(() => {
                     message.member.roles.remove(muterole);
-                   message.member.send('You have been unmuted!')
+                    message.author.send({embeds: [unute]})
                 }, TIME);
             } else {
                 userData.msgCount = msgCount;
@@ -102,6 +90,17 @@ client.on('message', async(message) => {
         });
     }
 })
+
+client.commands = new Collection()
+client.config = require('./config.json')
+client.prefix = client.config.prefix
+client.aliases = new Collection()
+
+
+// Global Variables
+client.commands = new Collection();
+client.slashCommands = new Collection();
+client.config = require("./config.json");
 
 // Initializing the project
 require("./handler")(client);

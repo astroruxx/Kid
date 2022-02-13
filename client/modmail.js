@@ -14,11 +14,10 @@ const modmailClient = new ModMailClient({
     custom: {
         user: user => {
             return {
-                content: `@${user.tag}`,
                 embeds: [
                     new MessageEmbed()
                     .setTitle('Modmail')
-                    .setDescription(`@${user.tag}. \nHere you can add any question about me @${client.user.tag}, Or report anything serious`)
+                    .setDescription(`Here you can add any question about me @${client.user.tag}, Or report anything serious. As well as give suggestions for anything you would like added to the bot.`)
                     .setThumbnail(user.displayAvatarURL())
                 ]
             }

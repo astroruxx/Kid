@@ -1,7 +1,7 @@
 const { Client, Message, MessageEmbed } = require('discord.js');
 
 module.exports = {
-    name: 'announce',
+    name: 'ac',
     /** 
      * @param {Client} client 
      * @param {Message} message 
@@ -12,7 +12,7 @@ module.exports = {
 
         let mention;
 
-        if(!args.length) return message.channel.send('> Usage: y!announce <#channel> <message> <-ping ?>');
+        if(!args.length) return message.channel.send('> Usage: >announce <#channel> <message> <-ping ?>');
 
         const channel = message.mentions.channels.first();
         if(!channel) return message.reply('Please specify a channel!');
