@@ -3,7 +3,7 @@ const ms = require('ms')
 const { MessageEmbed } = require("discord.js")
 
 client.on('guildMemberAdd', member => {
-    let minAge = ms('1 days')
+    let minAge = ms('2 days')
     let createdAt = new Date(member.user.createdAt).getTime()
     let diff = Date.now() - createdAt
     const embed = new MessageEmbed()

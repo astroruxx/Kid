@@ -1,7 +1,7 @@
 const { Client, Message, MessageEmbed } = require('discord.js');
 
 module.exports = {
-    name: 'ac',
+    name: 'announce',
     /** 
      * @param {Client} client 
      * @param {Message} message 
@@ -12,7 +12,7 @@ module.exports = {
 
         let mention;
 
-        if(!args.length) return message.channel.send('> Usage: >announce <#channel> <message> <-ping ?>');
+        if(!args.length) return message.channel.send('> Usage: .ac <#channel> <message> <-ping ?>');
 
         const channel = message.mentions.channels.first();
         if(!channel) return message.reply('Please specify a channel!');
@@ -29,9 +29,14 @@ module.exports = {
         } else mention = false;
 
         if(mention === true) channel.send('@everyone');
+   const embed= new MessageEmbed()
+                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+                .setDescription(args.slice(1).join(" "))
+                .setTimestamp()
+                .setColor('RANDOM')
         channel.send(
           {
-              content: args.slice(1).join(" "),
+              embeds: [embed]
           }
         )
 

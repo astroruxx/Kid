@@ -1,10 +1,15 @@
 const { Client, Collection, MessageEmbed, Message } = require("discord.js");
+const usersMap = new Map();
+const LIMIT = 200000;
+const TIME = 1000000;
+const DIFF = 5000;
 const fs = require('fs')
+const ultrax = require('ultrax')
 
 const client = new Client({
     intents: 32767,
     partials : ["MESSAGE", "CHANNEL", "REACTION"],
-    allowedMentions: { parse: ['users', 'roles', 'everyone'], repliedUser: true }
+    allowedMentions: { parse: ['users', 'roles'], repliedUser: true }
 });
 module.exports = client;
 
@@ -13,10 +18,35 @@ logs(client, {
     debug: true
 });
 
-const usersMap = new Map();
-const LIMIT = 5;
-const TIME = 10000000;
-const DIFF = 3000;
+ultrax.boost.start(client, '937069384734769192')
+client.on('boost', async booster => {
+    const boostImage = ultrax.boostImage
+    let avatar = booster.user.displayAvatarURL({ dynamic: false})
+    let boostCard = await boostImage(avatar)
+	const boostchannel = client.channels.cache.get('938485403856539655')
+	boostchannel.send({ content: `${booster} boosted the server!!`, files: [ boostCard ] })
+
+})
+
+
+
+
+
+// replace the files accordi
+
+client.commands = new Collection()
+client.config = require('./config.json')
+client.prefix = client.config.prefix
+client.aliases = new Collection()
+
+
+// Global Variables
+client.commands = new Collection();
+client.slashCommands = new Collection();
+client.config = require("./config.json");
+
+
+
 
 client.on('message', async(message) => {
     if(message.author.bot) return;
@@ -30,7 +60,7 @@ client.on('message', async(message) => {
         if(difference > DIFF) {
             clearTimeout(timer);
             console.log('Cleared Timeout');
-            userData.msgCount = 1;
+            userData.msgCount = 10;
             userData.lastMessage = message;
             userData.timer = setTimeout(() => {
                 usersMap.delete(message.author.id);
@@ -41,7 +71,7 @@ client.on('message', async(message) => {
         else {
             ++msgCount;
             if(parseInt(msgCount) === LIMIT) {
-                let muterole = message.guild.roles.cache.find(role => role.name === 'muted');
+                let muterole = message.guild.roles.cache.find(role => role.id === '937071229532254307');
                 if(!muterole) {
                     try{
                         muterole = await message.guild.roles.create({
@@ -58,19 +88,11 @@ client.on('message', async(message) => {
                         console.log(e)
                     }
                 }
-                const mute = new MessageEmbed()
-                .setColor('RANDOM')
-                .setTitle(`you have been muted for ${TIME} seconds`)
-                .setImage(`${message.author.displayAvatarURL({dynamic: true})}`)
-                const unute = new MessageEmbed()
-                .setColor('RANDOM')
-                .setTitle(`you have been unmuted please behave or a mod will ban you if you have been muted to many times!`)
-                .setImage(`${message.author.displayAvatarURL({dynamic: true})}`)
                 message.member.roles.add(muterole);
-                message.author.send({embeds: [mute]});
+                message.member.send ('you have been muted!');
                 setTimeout(() => {
                     message.member.roles.remove(muterole);
-                    message.author.send({embeds: [unute]})
+                   message.member.send('You have been unmuted!')
                 }, TIME);
             } else {
                 userData.msgCount = msgCount;
@@ -90,17 +112,6 @@ client.on('message', async(message) => {
         });
     }
 })
-
-client.commands = new Collection()
-client.config = require('./config.json')
-client.prefix = client.config.prefix
-client.aliases = new Collection()
-
-
-// Global Variables
-client.commands = new Collection();
-client.slashCommands = new Collection();
-client.config = require("./config.json");
 
 // Initializing the project
 require("./handler")(client);

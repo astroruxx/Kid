@@ -40,7 +40,7 @@ client.on("messageCreate", async (message) => {
         }
         const embed = new MessageEmbed()
     .setTitle(`${message.author.id}`)
-    .setDescription(`congrats you have leveled up to **${user.level}**🎉`)
+    .setDescription(`Congrats you have leveled up to **\`${user.level}\`**🎉`)
     .setThumbnail(`${message.author.displayAvatarURL({dynamic: true})}`)
         message.reply({ embeds: [embed]})
         }

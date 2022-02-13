@@ -2,16 +2,17 @@ const {MessageEmbed} = require('discord.js')
 
 
 module.exports = {
-    name: 'blank',
+    name: 'faq1',
     UserPerms: ['rule'],
 
     run: async (client, message, args) => {
         const embed = new MessageEmbed()
         .setTitle('faq 1')
-        .setDescription(`No blank nicknames. Go to <#938485403437117494> if you do not understand or know the rules of this server`)
+        .setDescription(`No blank nicknames. Go to rules if you do not understand or know the rules of this server`)
        .setColor('RANDOM')
        
         message.reply({
+           content: 'https://discord.gg/5rGhw5Edpr',
             embeds: [embed]
         })
     },

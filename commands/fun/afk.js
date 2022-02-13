@@ -5,7 +5,7 @@ const client = require('../..')
 module.exports = {
     name: 'afk',
     description: 'set your afk',
-     run: async(client, message, args, Discord) => {
+    run: async(client, message, args, Discord) => {
         const reason = args.join(' ') || 'no reason was given'
         const user = message.member
         afk.set(message.author.id, [Date.now(), reason])
