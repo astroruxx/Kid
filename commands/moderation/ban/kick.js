@@ -1,0 +1,28 @@
+const {
+    Client,
+    Message,
+    MessageEmbed
+} = require('discord.js');
+
+module.exports = {
+    name: 'kick',
+    UserPerms: ['MODERATE_MEMBERS'],
+    /** 
+     * @param {Client} client 
+     * @param {Message} message 
+     * @param {String[]} args 
+     */
+    run: async (client, message, args, Discord) => {
+
+        const user = message.mentions.members.first();
+
+        if (user) {
+            user.kick().then(() => {
+                message.channel.send('Kicked!')
+            })
+        } else {
+            message.channel.send('Specify a person for this mission')
+        }
+
+    }
+}
