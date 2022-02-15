@@ -5,7 +5,7 @@ const {
 } = require('discord.js');
 
 module.exports = {
-    name: 'ban',
+    name: 'execute',
     /** 
      * @param {Client} client 
      * @param {Message} message 
@@ -14,21 +14,26 @@ module.exports = {
     run: async (client, message, args, Discord) => {
 
         const user = message.mentions.members.first();
+        if (!user) {
+            message.channel.send('user was not found')
+        }
         const reason = args.slice(1).join(' ');
-        if (!reason) return message.channel.send('What is the reason?');
+        if (!reason) return message.channel.send('Why should I execute this user?');
         const embed = new MessageEmbed()
-        .setImage(`${user.displayName} was banned`)
+        .setTitle(`${user.displayName} was executed`)
+        .setColor('RANDOM')
 
         if (user) {
 
             await user.ban({
                 reason: reason,
             }).then(() => {
-                message.channel.send('banned!')
+                message.reply({embeds: [embed]})
+                user.send({embeds: [embed]})
             })
 
         } else {
-            message.channel.send('cant find the user!')
+            message.author.send('Could not execute the user mentioned please mention a valid user. `>execute @<user.id/user.@> <reason>`')
         }
 
     }
