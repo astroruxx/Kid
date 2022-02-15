@@ -18,15 +18,7 @@ logs(client, {
     debug: true
 });
 
-ultrax.boost.start(client, '937069384734769192')
-client.on('boost', async booster => {
-    const boostImage = ultrax.boostImage
-    let avatar = booster.user.displayAvatarURL({ dynamic: false})
-    let boostCard = await boostImage(avatar)
-	const boostchannel = client.channels.cache.get('938485403856539655')
-	boostchannel.send({ content: `${booster} boosted the server!!`, files: [ boostCard ] })
 
-})
 
 
 

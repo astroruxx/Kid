@@ -6,6 +6,8 @@ const {
 
 module.exports = {
     name: 'execute',
+    UserPerms: ['MODERATE_MEMBERS'],
+    aliases: ['ban', 'destroy'],
     /** 
      * @param {Client} client 
      * @param {Message} message 
@@ -14,27 +16,32 @@ module.exports = {
     run: async (client, message, args, Discord) => {
 
         const user = message.mentions.members.first();
-        if (!user) {
-            message.channel.send('user was not found')
-        }
         const reason = args.slice(1).join(' ');
-        if (!reason) return message.channel.send('Why should I execute this user?');
-        const embed = new MessageEmbed()
-        .setTitle(`${user.displayName} was executed`)
+        const embedd = new MessageEmbed()
         .setColor('RANDOM')
-
+        .setTitle('I need the id or <@> of  user and a reason of why you would like me to execute them')
+        .setDescription('execute format: `>execute <@user> <reason>`')
+        if (!reason || !user) return message.channel.send({embeds: [embedd]});
+        const embed = new MessageEmbed()
+        .setTitle(`${user.displayName} was banned`)
+        .setDescription(`reason: ${reason}`)
+        .setColor('RANDOM')
+        .setImage(`${user.displayAvatarURL({dynamic: true})}`)
+        const send = user.send({embeds: [embed]})
         if (user) {
 
             await user.ban({
                 reason: reason,
             }).then(() => {
                 message.reply({embeds: [embed]})
-                user.send({embeds: [embed]})
+                send
             })
+            if (!send) {
+                return ('could not send message.this user')
+            }
+            }
 
-        } else {
-            message.author.send('Could not execute the user mentioned please mention a valid user. `>execute @<user.id/user.@> <reason>`')
+        }  
         }
 
-    }
-}
+
