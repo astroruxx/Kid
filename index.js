@@ -1,10 +1,8 @@
 const { Client, Collection, MessageEmbed, Message } = require("discord.js");
 const usersMap = new Map();
-const LIMIT = 200000;
+const LIMIT = 5;
 const TIME = 1000000;
 const DIFF = 5000;
-const fs = require('fs')
-const ultrax = require('ultrax')
 
 const client = new Client({
     intents: 32767,
@@ -52,7 +50,7 @@ client.on('message', async(message) => {
         if(difference > DIFF) {
             clearTimeout(timer);
             console.log('Cleared Timeout');
-            userData.msgCount = 10;
+            userData.msgCount = 1;
             userData.lastMessage = message;
             userData.timer = setTimeout(() => {
                 usersMap.delete(message.author.id);
@@ -62,7 +60,7 @@ client.on('message', async(message) => {
         else {
             ++msgCount;
             if(parseInt(msgCount) === LIMIT) {
-                let muterole = message.guild.roles.cache.find(role => role.id === '937071229532254307');
+                let muterole = message.guild.roles.cache.find(role => role.name === 'muted');
                 if(!muterole) {
                     try{
                         muterole = await message.guild.roles.create({
