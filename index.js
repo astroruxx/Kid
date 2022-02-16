@@ -56,7 +56,6 @@ client.on('message', async(message) => {
             userData.lastMessage = message;
             userData.timer = setTimeout(() => {
                 usersMap.delete(message.author.id);
-                console.log('Removed from map.')
             }, TIME);
             usersMap.set(message.author.id, userData)
         }
@@ -81,7 +80,12 @@ client.on('message', async(message) => {
                     }
                 }
                 message.member.roles.add(muterole);
-                message.member.send ('you have been muted!');
+                const mutedembed = new MessageEmbed()
+                .setColor('RANDOM')
+                .setTitle('MUTED')
+                .setDescription('You have been muted for spam by [AUTO MOD] <a:7284birb:943294880195694622>')
+                .setImage(`${message.member.displayAvatarURL({dynamic: true})}`)
+                message.member.send ({embeds: [mutedembed]});
                 setTimeout(() => {
                     message.member.roles.remove(muterole);
                    message.member.send('You have been unmuted!')

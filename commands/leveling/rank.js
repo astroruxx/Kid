@@ -3,7 +3,7 @@ const Levels = require('discord-xp')
 const canvacord = require('canvacord')
 module.exports = {
     name: 'rank',
-    aliases: [''],
+    aliases: ['r'],
     run: async (client, message, args) => {
         const target = message.mentions.users.first() || message.author
         let memberTarget = message.guild.members.cache.get(target.id);
@@ -23,7 +23,7 @@ module.exports = {
             .setRequiredXP(neededXp)
             .setRank(user.position)
             .setStatus('online')
-            .setProgressBar('#FF0000', 'COLOR') // you can change RANKDOM to any other color
+            .setProgressBar('#FF0000', 'COLOR') 
             .setUsername(memberTarget.user.username)
             .setDiscriminator(memberTarget.user.discriminator);
 
