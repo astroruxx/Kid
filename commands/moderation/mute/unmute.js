@@ -10,7 +10,7 @@ module.exports=  {
 
         if(!Member) return message.channel.send('Member not found')
 
-        const role = message.guild.roles.cache.find(r => r.name.toLowerCase() === 'muted');
+        const role = message.guild.roles.cache.find(r => r.name.toString() === '『🔇』Muted');
 
         await Member.roles.remove(role)
 

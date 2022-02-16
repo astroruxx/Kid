@@ -10,14 +10,14 @@ module.exports = {
         
         const Member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
         if(!Member) return message.channel.send('Member is not found.')
-        const role = message.guild.roles.cache.find(role => role.name.toString() === '🔇 Muted')
+        const role = message.guild.roles.cache.find(role => role.name.toString() === '『🔇』Muted')
         if(!role) {
             try {
                 message.channel.send('Muted role is not found, attempting to create muted role.')
 
                 let muterole = await message.guild.roles.create({
                     data : {
-                        name : '🔇Muted',
+                        name : '🔇 Muted',
                         permissions: []
                     }
                 });
