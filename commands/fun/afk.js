@@ -15,14 +15,15 @@ module.exports = {
         .setTimestamp()
         .setColor('RANDOM')
         .setThumbnail(user.user.displayAvatarURL({dynamic: true}))
-       const allowedRole = message.guild.role(r => r.id === "943315302425460786");
+        const noembed = new MessageEmbed()
+        .setTitle('you are not allowed to use this command')
+        .setDescription(`<@!${user.user.id}>`)
+        .setTimestamp()
+        .setColor('RANDOM')
+        .setThumbnail(user.user.displayAvatarURL({dynamic: true}))
+       if (message.member.roles.cache.has('938531722813923338')) return message.reply({embeds: [embed]}) 
+       else (message.member.roles.cache.has('938531722813923338')); return message.reply({embeds: [noembed]})
+    } 
+}
 
-       if (message.user.role.has(allowedRole)) {
-        message.reply({
-            embeds: [embed]
-        })
-    } else {
-        return ('you do not have the right perms')
-    }
-       
-}}
+ 

@@ -3,11 +3,11 @@ const {MessageEmbed} = require('discord.js')
 
 module.exports = {
     name: 'rules',
-    UserPerms: ['rule'],
+    UserPerms: ['MANAGE_MESSAGES'],
 
     run: async (client, message, args) => {
         const embed = new MessageEmbed()
-        .setTitle('@everyone ')
+        .setTitle('Rules')
         .setDescription(`No blank nicknames.
         No inappropriate nicknames.
         No sexually explicit nicknames.
@@ -76,6 +76,7 @@ module.exports = {
         Moderators reserve the right to disconnect, mute, deafen, or move members to and from voice channels.
         **REACT BELOW FOR VERIFIED ROLE** `)
        .setColor('NAVY')
+       .setImage('https://i.imgur.com/g9TQKal.png')
         message.channel.send({
             embeds: [embed]
         })
