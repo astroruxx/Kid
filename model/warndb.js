@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
-const warndb = new mongoose.Schema({
+const WarnDbSchema = new mongoose.Schema({
     guild: String,
     user: String,
-    content: Array //lets try again
+    content: Array 
 })
 
-module.exports = mongoose.model("warndb", warndb);
+module.exports = mongoose.model("WarnDatabaseSchema", WarnDbSchema);

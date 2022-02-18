@@ -6,10 +6,11 @@ module.exports = {
     name: 'afk',
     description: 'set your afk',
     run: async(client, message, args, Discord) => {
+        
         const reason = args.join(' ') || 'no reason was given'
         const user = message.member
         afk.set(message.author.id, [Date.now(), reason])
-       
+    
         const embed = new MessageEmbed()
         .setTitle('you are now afk')
         .setDescription(`For: ${reason}`)
@@ -22,3 +23,4 @@ module.exports = {
         })
     }
 }
+
