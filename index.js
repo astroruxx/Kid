@@ -1,10 +1,8 @@
 const { Client, Collection, MessageEmbed, Message } = require("discord.js");
 const usersMap = new Map();
-const LIMIT = 200000;
+const LIMIT = 5;
 const TIME = 1000000;
 const DIFF = 5000;
-const fs = require('fs')
-const ultrax = require('ultrax')
 
 const client = new Client({
     intents: 32767,
@@ -18,15 +16,7 @@ logs(client, {
     debug: true
 });
 
-ultrax.boost.start(client, '937069384734769192')
-client.on('boost', async booster => {
-    const boostImage = ultrax.boostImage
-    let avatar = booster.user.displayAvatarURL({ dynamic: false})
-    let boostCard = await boostImage(avatar)
-	const boostchannel = client.channels.cache.get('938485403856539655')
-	boostchannel.send({ content: `${booster} boosted the server!!`, files: [ boostCard ] })
 
-})
 
 
 
@@ -60,18 +50,17 @@ client.on('message', async(message) => {
         if(difference > DIFF) {
             clearTimeout(timer);
             console.log('Cleared Timeout');
-            userData.msgCount = 10;
+            userData.msgCount = 1;
             userData.lastMessage = message;
             userData.timer = setTimeout(() => {
                 usersMap.delete(message.author.id);
-                console.log('Removed from map.')
             }, TIME);
             usersMap.set(message.author.id, userData)
         }
         else {
             ++msgCount;
             if(parseInt(msgCount) === LIMIT) {
-                let muterole = message.guild.roles.cache.find(role => role.id === '937071229532254307');
+                let muterole = message.guild.roles.cache.find(role => role.id === '938485402698936479');
                 if(!muterole) {
                     try{
                         muterole = await message.guild.roles.create({
@@ -89,7 +78,12 @@ client.on('message', async(message) => {
                     }
                 }
                 message.member.roles.add(muterole);
-                message.member.send ('you have been muted!');
+                const mutedembed = new MessageEmbed()
+                .setColor('RANDOM')
+                .setTitle('MUTED')
+                .setDescription('You have been muted for spam by [AUTO MOD] <a:7284birb:943294880195694622>')
+                .setImage(`${message.member.displayAvatarURL({dynamic: true})}`)
+                message.member.send ({embeds: [mutedembed]});
                 setTimeout(() => {
                     message.member.roles.remove(muterole);
                    message.member.send('You have been unmuted!')

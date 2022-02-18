@@ -57,7 +57,7 @@ module.exports = {
         .setImage(`${user.displayAvatarURL({dynamic: true})}`)
 
         message.channel.send({embeds: [embed]})
-        client.channels.fetch('937071230190768167').then(channel => channel.send({embeds: [embed]}))
+        client.channels.fetch('938485405429411906').then(channel => channel.send({embeds: [embed]}))
         user.send({embeds: [dmembed]})
 
     }

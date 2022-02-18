@@ -11,7 +11,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, message, args) => {
-        const reason = args.join(" ") || 'no reason';
+        const reason = args.join(" ") || 'reason not given';
 
         modmailClient.deleteMail({ channel: message.channel.id, reason})
     },

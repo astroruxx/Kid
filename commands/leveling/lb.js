@@ -5,8 +5,6 @@ module.exports = {
     name: 'leaderboard',
     aliases: ['lb'],
     description: 'Shows the leaderboard',
-    BotPerms: ["SEND_MESSAGES", "VIEW_CHANNELS", "SEND_MESSAGES_IN_THREAD", "EMBED_LINKS"], 
-    emoji: '👑',
     /** 
      * @param {Client} client 
      * @param {Message} message 

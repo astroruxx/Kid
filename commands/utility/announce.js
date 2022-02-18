@@ -12,7 +12,7 @@ module.exports = {
 
         let mention;
 
-        if(!args.length) return message.channel.send('> Usage: .ac <#channel> <message> <-ping ?>');
+        if(!args.length) return message.channel.send('> Usage: >ac <#channel> <message> <-ping ?>');
 
         const channel = message.mentions.channels.first();
         if(!channel) return message.reply('Please specify a channel!');

@@ -20,6 +20,8 @@ const modmailClient = new ModMailClient({
                     .setTitle('Modmail')
                     .setDescription(`@${user.tag}. \nHere you can add any question about me @${client.user.tag}, Or report anything serious`)
                     .setThumbnail(user.displayAvatarURL())
+                    .addField()
+                    .setDescription(`You Have Been Connected With a Moderator.\n`)
                 ]
             }
         },

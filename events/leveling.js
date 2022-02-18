@@ -10,7 +10,7 @@ const client = require('../index');
 client.on("messageCreate", async (message) => {
     if (message.author.bot) return;
     if (!message.guild) return;
-    const randomxp = Math.floor(Math.random() * 10) + 1; // this is the amoumt of xp it will give.. so it will give random number from 0 to 10 multiple by 10 and adding 1.. u can reduce this.. by changing the 12 to smth else..
+    const randomxp = Math.floor(Math.random() * 10) + 1;
     const hasLevelUp = await Levels.appendXp(message.author.id, message.guild.id, randomxp);
     if (hasLevelUp) {
         const user = await Levels.fetch(message.author.id, message.guild.id);
@@ -34,9 +34,13 @@ client.on("messageCreate", async (message) => {
             message.member.roles.add('938526979420995615')
             message.member.roles.remove('938531723510157352')
         }
+        if(user.level == 20){
+            message.member.roles.add('938531725066248232')
+        }
         if(user.level == 30){
             message.member.roles.remove('938526979420995615')
             message.member.roles.add('938531724160286790')
+            message.member.send('Congrats You have reached Level 30, https://canary.discord.com/channels/938485402656981022/938546858282860564 to see what perks you have unlocked')
         }
         const embed = new MessageEmbed()
     .setTitle(`${message.author.id}`)
