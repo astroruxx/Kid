@@ -30,8 +30,6 @@ client.on('messageCreate', async (message) => {
     .setTitle(`<@!${message.author.id}>`)
     .setDescription(`You are not allowed to use this command.`)
     .setColor('RANDOM')
-    if (gData) {
-    if (message.member.roles.cache.has('938531722813923338')) return message.reply({embeds: [afkEm]})
-    if (!message.member.roles.cache.has('938531722813923338')) return
-    } 
-})
+}
+ 
+)

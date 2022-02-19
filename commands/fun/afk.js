@@ -21,8 +21,8 @@ module.exports = {
         .setTimestamp()
         .setColor('RANDOM')
         .setThumbnail(user.user.displayAvatarURL({dynamic: true}))
-       if (message.member.roles.cache.has('938531722813923338')) return message.reply({embeds: [embed]}) 
-       else (message.member.roles.cache.has('938531722813923338')); return message.reply({embeds: [noembed]})
+       if (message.member.roles.cache.has('938531725066248232')) return message.reply({embeds: [embed]}) 
+       else (message.member.roles.cache.has('938531725066248232')); return message.reply({embeds: [noembed]})
     } 
 }
 
