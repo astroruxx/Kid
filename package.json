@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-
     "scripts": {
         "start": "node index.js",
         "test": "nodemon index.js"
@@ -12,6 +11,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@iamtraction/google-translate": "^1.1.2",
         "ascii-table": "^0.0.9",
         "axios": "^0.25.0",
         "canvacord": "^5.2.3",

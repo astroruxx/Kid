@@ -18,18 +18,17 @@ client.on('messageCreate', async (message) => {
             .setTimestamp(timeAgo)
             .setThumbnail(mentionedMember.displayAvatarURL({dynamic: true}))
             .setColor('RANDOM')
+            message.reply({embeds: [embed]})
         }
     }
 
     const gData = afk.get(message.author.id)
     const afkEm = new MessageEmbed()
     .setTitle(`AFK removed`)
-    .setDescription(`i have removed your afk`)
+    .setDescription(`Welcome back!`)
     .setColor('RANDOM')
-    const noafk = new MessageEmbed()
-    .setTitle(`<@!${message.author.id}>`)
-    .setDescription(`You are not allowed to use this command.`)
-    .setColor('RANDOM')
-}
- 
-)
+    if(gData) {
+        afk.delete(message.author.id)
+        message.reply({embeds: [afkEm]})
+    }
+})

@@ -19,9 +19,8 @@ module.exports = {
         const embed = new MessageEmbed()
             .setColor('#7a46b3') 
             .setTitle('**leaderboard**')
-            .setImage('https://gifimage.net/wp-content/uploads/2017/12/jarvis-gif-9.gif')
             .addField('Leaderboard', `${l.join("\n\n")}`)
-            message.channel.send({ content: ' ', embeds: [embed] }); 
+            message.reply({ embeds: [embed] }); 
         
     }
 }

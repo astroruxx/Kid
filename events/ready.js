@@ -2,7 +2,7 @@ const {setPresence} = require('discord.js');
 const { boost } = require('ultrax');
 const client = require("../index");
 const arrayOfStatus = [
-    'https://astrorux.github.io/',
+    'https://astroruxx.github.io/',
     'The Avengers',
     'Dms',
     'Netflix',
