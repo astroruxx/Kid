@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, Message } = require('discord.js');
 const { ModMailClient } = require('reconlx');
 const { channels } = require('../index');
 const client = require('../index')
@@ -14,7 +14,6 @@ const modmailClient = new ModMailClient({
     custom: {
         user: user => {
             return {
-                content: ``,
                 const: embed = new MessageEmbed()
                     .setTitle('Modmail')
                     .setDescription(`<@!${user.id}>. \nHere you can add any question about me @${client.user.tag}, Or report anything serious`)
@@ -24,6 +23,7 @@ const modmailClient = new ModMailClient({
             
             }
         },
+        
         channel: (user) => {
             return {
                 const: otherembed = new MessageEmbed()
@@ -31,10 +31,13 @@ const modmailClient = new ModMailClient({
                 .setDescription('modmail opened')
                 .setThumbnail(user.displayAvatarURL()),
                         embeds: [otherembed]
-                   
-           
+                    
             }
         }
+        
     }
+    
 })
+
+
 module.exports = modmailClient;

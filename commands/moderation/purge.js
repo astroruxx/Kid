@@ -19,12 +19,16 @@ module.exports = {
             let delamount = args[0];
             if (isNaN(delamount) || parseInt(delamount <= 0)) return message.reply('Error:')
 
-            if (parseInt(delamount) > 100) return message.reply('you cant delete over 300 messages')
+            const error = new MessageEmbed()
+            .setTitle('Error')
+            .setDescription('You can not delete over 100 messages')
+            .setColor('RED')
+            if (parseInt(delamount) > 101) return message.reply({embeds: [error]}).catch(e); {console.log('error ')}
 
             await message.channel.bulkDelete(parseInt(delamount) + 1, true);
             const embed = new MessageEmbed()
             .setTitle(`Purged messages`)
-            .setColor(`RANDOM`)
+            .setColor(`GREEN`)
             .setThumbnail(`${client.user.displayAvatarURL({dynamic: true})}`)
             .setDescription(`I have purged ${delamount} messages`)
 

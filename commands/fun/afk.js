@@ -22,8 +22,12 @@ module.exports = {
         .setTimestamp()
         .setColor('RANDOM')
         .setThumbnail(user.user.displayAvatarURL({dynamic: true})) 
-        if (message.member.roles.cache.has('938531722813923338')) afk.set(message.author.id, [Date.now(), reason]) 
-       if (message.member.roles.cache.has('938531722813923338')) message.reply({embeds: [embed]})
+        if (message.member.roles.cache.has('938531725066248232')) afk.set(message.author.id, [Date.now(), reason]) 
+       if (message.member.roles.cache.has('938531725066248232')) message.reply({embeds: [embed]})
+       if (message.member.roles.cache.has('938531725066248232')) message.member.setNickname(`[AFK] ${message.author.username}`)
+       if (message.member.roles.cache.has('938485402770210927')) afk.set(message.author.id, [Date.now(), reason]) 
+       if (message.member.roles.cache.has('938485402770210927')) message.reply({embeds: [embed]})
+       if (message.member.roles.cache.has('938485402770210927')) message.member.setNickname(`[AFK] ${message.author.username}`)
        else return message.reply({embeds: [noembed]})
        
     } 

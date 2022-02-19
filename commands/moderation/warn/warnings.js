@@ -27,11 +27,12 @@ module.exports = {
                 )
                 const embed = new MessageEmbed()
                     .setDescription(e.join(' '))
+                    .setColor('GREEN')
                 message.channel.send({
                     embeds: [embed]
                 })
             } else {
-                message.channel.send('This user does not have any warnings')
+                message.reply('please specify a user!')
             }
         }) 
 

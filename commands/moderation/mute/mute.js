@@ -7,7 +7,7 @@ module.exports = {
      * @param {Message} message
      */
     run : async(client, message, args) => {
-        
+        const reason = args.slice(1).join(' ') || 'no reason given'
         const Member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
         if(!Member) return message.channel.send('Member is not found.')
         const role = message.guild.roles.cache.find(r => r.name.toString() === '『🔇』Muted')
@@ -33,7 +33,12 @@ module.exports = {
                 console.log(error)
             }
         };
+        const em = new MessageEmbed()
+        .setColor('RED')
+        .setTitle(`${Member.displayName} was muted`)
+        .setDescription(`Reason: ${reason}`)
+        .addField('Muted by:', `<@!${message.author.id}>`)
         await Member.roles.add(role)
-        message.channel.send(`${Member.displayName} is now muted.`)
+        message.channel.send({embeds: [em]})
     }
 }

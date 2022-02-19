@@ -46,19 +46,25 @@ module.exports = {
 
         })
         const embed = new MessageEmbed()
-        .setThumbnail(`${user.displayAvatarURL({dynamic: true})}`)
         .setColor('RANDOM')
-        .setTitle(`${user.id} you have been warned for ${reason}`)
+        .setTitle(`${user.user.username} you have been warned for ${reason}`)
         .setDescription('if you keep up this behavior you will be kicked or banned')
+        const channelembed = new MessageEmbed()
+        .setColor('GREEN')
+        .setTitle(`${user.displayName}, warned by ${message.author.tag}`)
+        .setDescription(`Reason: ${reason}`)
         const dmembed = new MessageEmbed()
-        .setTitle(`${user.id} has warned you`)
-        .setDescription(`reason: ${reason}`)
-        .setColor('RANDOM')
-        .setImage(`${user.displayAvatarURL({dynamic: true})}`)
-
-        message.channel.send({embeds: [embed]})
-        client.channels.fetch('938485405429411906').then(channel => channel.send({embeds: [embed]}))
-        user.send({embeds: [dmembed]})
+        .setColor('YELLOW')
+        .setTitle(`${message.author.tag} has warned you`)
+        .setDescription(`You have been warned`)
+        .addField('Reason', `${reason}`)
+        const SendEm = await message.channel.send({embeds: [embed]});
+        message.delete()
+        setTimeout(() => {
+            SendEm.delete()
+             }, 10000);
+        client.channels.fetch('938485405429411906').then(channel => channel.send({embeds: [channelembed]}))
+        await user.send({embeds: [dmembed]})
 
     }
-}
+} 

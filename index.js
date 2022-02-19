@@ -1,8 +1,10 @@
-const { Client, Collection, MessageEmbed, Message } = require("discord.js");
+const { Client, Collection, MessageEmbed, Message, Discord } = require("discord.js");
 const usersMap = new Map();
 const LIMIT = 5;
-const TIME = 1000000;
+const TIME = 90000;
 const DIFF = 5000;
+const Fs = require('fs')
+const ms = require('ms')
 
 const client = new Client({
     intents: 32767,
@@ -79,14 +81,21 @@ client.on('message', async(message) => {
                 }
                 message.member.roles.add(muterole);
                 const mutedembed = new MessageEmbed()
-                .setColor('RANDOM')
-                .setTitle('MUTED')
-                .setDescription('You have been muted for spam by [AUTO MOD] <a:7284birb:943294880195694622>')
-                .setImage(`${message.member.displayAvatarURL({dynamic: true})}`)
+                .setColor('RED')
+                .setTitle(`You have been muted in ${message.guild.name}`)
+                .setDescription('You have been muted')
+                .addField('Reason' , '[AutoMod] Spam')
+                .addField('Expires' , '15m')
+                
                 message.member.send ({embeds: [mutedembed]});
                 setTimeout(() => {
+                    const un = new MessageEmbed()
+                    .setColor('GREEN')
+                    .setTitle('You have been Unmuted')
+                    .setDescription('You have been Unmuted')
+                    .addField('Refrain From', 'Spamming')
                     message.member.roles.remove(muterole);
-                   message.member.send('You have been unmuted!')
+                   message.member.send({embeds: [un]})
                 }, TIME);
             } else {
                 userData.msgCount = msgCount;
@@ -106,6 +115,145 @@ client.on('message', async(message) => {
         });
     }
 })
+
+
+ 
+
+client.on('message', async(msg) => {
+
+    if(msg.author.bot) return;
+    if(!msg.guild) return;
+    if(msg.content.length >= 150) {
+    msg.delete();
+   return msg.channel.send(`${msg.author} , you are not allowed to send unnecessarily long and annoying messages in this server!`)
+     
+    }
+
+if(msg.mentions.users.size > 2 && !msg.member.hasPermission('ADMINISTRATOR') && !msg.channel.id === '938485403437117495') {
+
+
+msg.delete()
+return msg.reply('you cannot mass mention users in this server!')
+
+}
+//ANTI LINE SPAM
+try {
+var lineArray = msg.content.match(/\n/g);
+var number = lineArray.length
+
+if(number >= 4) {
+    msg.delete()
+    return msg.reply('you cannot line spam in this server!')
+    
+}
+}catch(err) {
+
+
+}
+ 
+    function isValidURL(string) {
+        var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+        return (res !== null)
+      };
+      var testContent = msg.content;
+      if(isValidURL(testContent)) {
+         
+        msg.delete();
+        return msg.channel.send('you cannot send links in this server!')
+      }
+
+      
+
+    var array = ['banana' , 'words', 'go' , 'here', 'poop'];
+ 
+        if(array.some(w =>  ` ${msg.content.toLowerCase()} `.includes(` ${w} `))){
+            var emojiGuild = client.guilds.cache.find(guild => guild.name === 'GITBASHED') //PUT YOUR GUILD NAME HERE
+             //PUT YOUR EMOJI NAME HERE
+
+
+            await msg.reply('we do not tolerate this language')
+            msg.delete()
+
+            var warnsJSON = JSON.parse(Fs.readFileSync('./warnInfo.json'))
+            
+
+            if(!warnsJSON[msg.author.id]) {
+                warnsJSON[msg.author.id] = {
+                    warns: 0
+                }
+
+                Fs.writeFileSync('./warnInfo.json' , JSON.stringify(warnsJSON))
+            }
+
+            warnsJSON[msg.author.id].warns += 1
+            Fs.writeFileSync('./warnInfo.json' , JSON.stringify(warnsJSON))
+
+
+            setTimeout(function() {
+
+                warnsJSON[msg.author.id].warns -= 1
+                Fs.writeFileSync('./warnInfo.json' , JSON.stringify(warnsJSON))
+            }, ms('24h'))
+
+            const warnEm = new MessageEmbed()
+            .setColor('YELLOW')
+            .setTitle(`You have been warned in ${msg.guild.name}`)
+            .setDescription('You have recieved a warning from the moderation system')
+            .addField('Reason' , '[AutoMod] Using filtered words')
+            .addField('Expires' , '24h')
+
+            try {
+                msg.author.send({embeds: [warnEm]})
+
+            } catch(err) {
+
+            }
+
+
+            if(Number.isInteger(warnsJSON[msg.author.id].warns / 3)) {
+                const mutedEm = new MessageEmbed()
+                .setColor('RED')
+                .setDescription(`**${msg.member.user.username}** has been muted for continuous infractions`)
+                msg.channel.send({embeds: [mutedEm]})
+
+                const muteRole = msg.guild.roles.cache.find(r => r.name.toString() === '『🔇』Muted')
+                const user = msg.member
+                user.roles.add(muteRole.id)
+
+                const yougotmuted = new MessageEmbed()
+                .setColor('RED')
+                .setTitle(`You have been muted in ${msg.guild.name}`)
+                .setDescription('You have been muted after 3 infractions')
+                .addField('Reason' , 'Multiple AutoMod Infractions')
+                .addField('Expires' , '2h')
+
+                try {
+
+                    msg.author.send({embeds: [yougotmuted]})
+
+                }catch(err) {
+
+                }
+
+                setTimeout(function () {
+                    user.roles.remove(muteRole.id)
+                }, ms('2h'));
+			
+            }
+        return;
+        }
+ 
+})
+
+client.on('guildMemberAdd' , async(member) => {
+
+let warnsJSON = JSON.parse(Fs.readFileSync('./warnInfo.json'));
+  warnsJSON[member.id] = {
+                warns: 0
+            }
+            Fs.writeFileSync('./warnInfo.json', JSON.stringify(warnsJSON));
+})
+
 
 // Initializing the project
 require("./handler")(client);
