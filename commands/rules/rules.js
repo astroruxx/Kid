@@ -73,8 +73,7 @@ module.exports = {
         No annoying, loud or high pitch noises.
         Reduce the amount of background noise, if possible.
         Moderators reserve the right to disconnect you from a voice channel if your sound quality is poor.
-        Moderators reserve the right to disconnect, mute, deafen, or move members to and from voice channels.
-        **REACT BELOW FOR VERIFIED ROLE** `)
+        Moderators reserve the right to disconnect, mute, deafen, or move members to and from voice channels.`)
        .setColor('NAVY')
        .setImage('https://i.imgur.com/g9TQKal.png')
         message.channel.send({

@@ -9,30 +9,30 @@ const modmailClient = new ModMailClient({
     category: '938486121518739496',
     modmailRole: '938486149322768394',
     mongooseConnectionString: 
-    'mongodb+srv://Stark:Judges2$@cluster0.o69ye.mongodb.net/Jarvis?retryWrites=true&w=majority',
+    'mongodb+srv://Winter:Soldier@cluster0.npqr0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     transcriptChannel: '938485405941129318',
     custom: {
         user: user => {
             return {
-                content: `@${user.tag}`,
-                embeds: [
-                    new MessageEmbed()
+                content: ``,
+                const: embed = new MessageEmbed()
                     .setTitle('Modmail')
-                    .setDescription(`@${user.tag}. \nHere you can add any question about me @${client.user.tag}, Or report anything serious`)
-                    .setThumbnail(user.displayAvatarURL())
-                    .addField()
-                    .setDescription(`You Have Been Connected With a Moderator.\n`)
-                ]
+                    .setDescription(`<@!${user.id}>. \nHere you can add any question about me @${client.user.tag}, Or report anything serious`)
+                    .setThumbnail(user.displayAvatarURL()),
+                    embeds: [embed]
+                    
+            
             }
         },
         channel: (user) => {
             return {
-                embeds: [
-                    new MessageEmbed()
-                    .setTitle(`@${user.tag}'s modmail`)
-                    .setDescription('modmail opened')
-                    .setThumbnail(user.displayAvatarURL())
-                ]
+                const: otherembed = new MessageEmbed()
+                .setTitle(`@${user.tag}'s modmail`)
+                .setDescription('modmail opened')
+                .setThumbnail(user.displayAvatarURL()),
+                        embeds: [otherembed]
+                   
+           
             }
         }
     }
