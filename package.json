@@ -28,8 +28,7 @@
         "glob": "^7.1.7",
         "jsonwebtoken": "^8.5.1",
         "moment": "^2.29.1",
-        "mongoose": "^6.0.2",
-        "reconlx": "^2.5.2",
-        "ultrax": "^1.9.5"
+        "mongoose": "^6.2.2",
+        "reconlx": "^2.5.2"
     }
 }

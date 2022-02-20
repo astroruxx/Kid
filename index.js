@@ -4,7 +4,6 @@ const fs = require('fs')
 const express = require("express")
 const os = require("os")
 const app = express()
-const ultrax = require('ultrax')
 const DiscordOauth2 = require("discord-oauth2")
 const cookieParser = require('cookie-parser');
 const usersMap = new Map();
@@ -302,5 +301,5 @@ let warnsJSON = JSON.parse(Fs.readFileSync('./warnInfo.json'));
 
 // Initializing the project
 require("./handler")(client);
-client.login(client.config.token);
-app.listen(process.env.PORT || 90, () => console.log(`App on port ${process.env.PORT || 90}`))
+client.login(token);
+app.listen(process.env.PORT || 90, () => console.log(`App processed on ${process.env.PORT || 90}`))

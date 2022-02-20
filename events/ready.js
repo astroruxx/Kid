@@ -1,5 +1,4 @@
 const {setPresence} = require('discord.js');
-const { boost } = require('ultrax');
 const client = require("../index");
 const arrayOfStatus = [
     'https://astroruxx.github.io/, WATCHING',
