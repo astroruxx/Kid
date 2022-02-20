@@ -1,5 +1,5 @@
 const fs = require('fs')
-const Client = require("../../index").Client
+const client = require("../../index").client
 const schema = require('../../model/dashboard')
 const jwt = require('jsonwebtoken')
 const { jwt_secret } = require("../../config.json")

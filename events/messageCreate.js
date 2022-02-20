@@ -15,6 +15,7 @@ client.on("messageCreate", async (message) => {
         .split(/ +/g);
 
     let command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
+    
 
     
     if (!command) command = client.commands.get(client.aliases.get(cmd)) // I have already added it, then add

@@ -1,6 +1,7 @@
 const { Client, Collection, MessageEmbed, Message, Discord } = require("discord.js");
 const { token, clientId, clientSecret } = require('./config.json')
 const fs = require('fs')
+const xp = require("simply-xp")
 const express = require("express")
 const os = require("os")
 const app = express()
@@ -12,6 +13,7 @@ const TIME = 90000;
 const DIFF = 5000;
 const Fs = require('fs')
 const ms = require('ms')
+
 
 const client = new Client({
     intents: 32767,
@@ -201,8 +203,7 @@ if(number >= 20) {
       };
       var testContent = msg.content;
       if(isValidURL(testContent)) {
-         
-        msg.delete();
+         msg.delete();
         return msg.channel.send('you cannot send links in this server!')
       }
 

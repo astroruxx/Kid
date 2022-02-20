@@ -1,5 +1,5 @@
 const fs = require('fs')
-const Client = require("../../index").Client
+const client = require("../../index").client
 
 module.exports = {
     name: "/test",
@@ -7,8 +7,8 @@ module.exports = {
         delete require.cache[require.resolve("../html/test.ejs")];
 
         let args = {
-            users: Client.users.cache.size,
-            guilds: Client.guilds.cache.size
+            users: client.users.cache.size,
+            guilds: client.guilds.cache.size
         }
 
     

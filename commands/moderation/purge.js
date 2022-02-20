@@ -23,7 +23,7 @@ module.exports = {
             .setTitle('Error')
             .setDescription('You can not delete over 100 messages')
             .setColor('RED')
-            if (parseInt(delamount) > 101) return message.reply({embeds: [error]}).catch(e); {console.log('error ')}
+            if (parseInt(delamount) > 100) return message.reply({embeds: [error]}).catch(e); {console.log('error ')}
 
             await message.channel.bulkDelete(parseInt(delamount) + 1, true);
             const embed = new MessageEmbed()
