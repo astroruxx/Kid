@@ -12,8 +12,7 @@ UserPerms: ['MANAGE_CHANNELS'],
 
 run: async(client, message, args) => {
     const role = message.guild.roles.everyone; 
-    let reason = args.slice(2).join(' ');
-    if (!reason) reason = "no reason specified"; 
+    let reason = args.slice(2).join(' ') || 'no reason specified'
     if (!args.length) return message.reply('Mention a channel!');
     if(!message.mentions.channels.first()) message.reply("Please specify a valid channel!")
 

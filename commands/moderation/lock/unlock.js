@@ -38,7 +38,7 @@ run: async(client, message, args) => {
             .addField(`${channel.name} | \`${channel.id}\` was unlocked`, 'ㅤ')
            
             .addField(`This channel was unlocked by:`, `${message.author}`)
-            .setFooter(`Lock has been lifted! You can talk now`)
+            .setFooter(`channel has been unlocked`)
             
             message.channel.send({embeds: [embed]})
            

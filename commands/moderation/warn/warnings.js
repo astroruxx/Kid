@@ -31,8 +31,6 @@ module.exports = {
                 message.channel.send({
                     embeds: [embed]
                 })
-            } else {
-                message.reply('please specify a user!')
             }
         }) 
 

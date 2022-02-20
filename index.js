@@ -1,4 +1,12 @@
 const { Client, Collection, MessageEmbed, Message, Discord } = require("discord.js");
+const { token, clientId, clientSecret } = require('./config.json')
+const fs = require('fs')
+const express = require("express")
+const os = require("os")
+const app = express()
+const ultrax = require('ultrax')
+const DiscordOauth2 = require("discord-oauth2")
+const cookieParser = require('cookie-parser');
 const usersMap = new Map();
 const LIMIT = 5;
 const TIME = 90000;
@@ -14,10 +22,47 @@ const client = new Client({
 module.exports = client;
 
 const logs = require('discord-logs');
+const res = require("express/lib/response");
+const req = require("express/lib/request");
 logs(client, {
     debug: true
 });
+app.enable("trust proxy") 
+app.set("etag", false) 
+app.use(express.static(__dirname + "/website"))
+app.set("views", __dirname)
+app.set("view engine", "ejs")
+app.use(cookieParser());
+process.oauth = new DiscordOauth2({
+    clientId: clientId,
+    clientSecret: clientSecret,
+    redirectUri: "http://localhost:90/callback"
+})
+app.get("/", async (req, res) => {
 
+    const users = client.users.cache.size
+    const guilds = client.guilds.cache.size
+    
+
+    let file = fs.readFileSync("./website/html/home.ejs", { encoding: "utf8" })
+    file = file.replace("$$guilds$$", guilds)
+    file = file.replace("$$users$$", users)
+
+    res.send(file)
+    // res.sendFile('./website/html/home.html', { root: __dirname })
+})
+let files = fs.readdirSync("./website/public").filter(f => f.endsWith(".js"))
+// Looping thru all files in it
+files.forEach(f => {
+    // requiring the file
+    const file = require(`./website/public/${f}`)
+    if(file && file.name) { // if the file exosts and has a name, do:
+        // set "name" from inside the file as a route, and run the function
+        app.get(file.name, file.run)
+        // logs which files are being loaded
+        console.log(`[Dashboard] - Loaded ${file.name}`)
+    }
+})
 
 
 
@@ -141,7 +186,7 @@ try {
 var lineArray = msg.content.match(/\n/g);
 var number = lineArray.length
 
-if(number >= 4) {
+if(number >= 20) {
     msg.delete()
     return msg.reply('you cannot line spam in this server!')
     
@@ -258,3 +303,4 @@ let warnsJSON = JSON.parse(Fs.readFileSync('./warnInfo.json'));
 // Initializing the project
 require("./handler")(client);
 client.login(client.config.token);
+app.listen(process.env.PORT || 90, () => console.log(`App on port ${process.env.PORT || 90}`))

@@ -1,10 +1,11 @@
 const client = require('../index')
-const {MessageEmbed} = require('discord.js')
+const {MessageEmbed, GuildMember} = require('discord.js')
 const { user } = require('../index')
 
 
 client.on('guildMemberAdd', async(member) => {
     const Channel = member.guild.channels.cache.get('938485404326326316') 
+    
 
     const embed = new MessageEmbed()
         .setColor('RANDOM')
@@ -16,5 +17,5 @@ client.on('guildMemberAdd', async(member) => {
     Channel.send({
         
         embeds: [embed]
-    })
+    }).catch(console.error())
 })

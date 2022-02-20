@@ -3,7 +3,7 @@ const {MessageEmbed, Message, Client} = require('discord.js')
 module.exports = {
     name: 'rl',
     UserPerms: ['MANAGE_MESSAGES'],
-    aliases: ['slowmode', 'slow'],
+    aliases: ['roleinfo', 'roleinformation'],
 
     /**
      * @param {Client} client
