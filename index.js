@@ -130,7 +130,7 @@ client.on('message', async(message) => {
                 .setTitle(`You have been muted in ${message.guild.name}`)
                 .setDescription('You have been muted')
                 .addField('Reason' , '[AutoMod] Spam')
-                .addField('Expires' , '15m')
+                .addField('Expires' , '15 minutes')
                 
                 message.member.send ({embeds: [mutedembed]});
                 setTimeout(() => {
@@ -151,7 +151,7 @@ client.on('message', async(message) => {
     else {
         let fn = setTimeout(() => {
             usersMap.delete(message.author.id);
-            console.log('Removed from map.')
+            console.log('map remove.')
         }, TIME);
         usersMap.set(message.author.id, {
             msgCount: 1,
@@ -170,7 +170,7 @@ client.on('message', async(msg) => {
     if(!msg.guild) return;
     if(msg.content.length >= 150) {
     msg.delete();
-   return msg.channel.send(`${msg.author} , you are not allowed to send unnecessarily long and annoying messages in this server!`)
+   return msg.channel.send(`${msg.author} , do not send long messages`)
      
     }
 
@@ -178,7 +178,7 @@ if(msg.mentions.users.size > 2 && !msg.member.hasPermission('ADMINISTRATOR') && 
 
 
 msg.delete()
-return msg.reply('you cannot mass mention users in this server!')
+return msg.reply('No mass mentions allowed.')
 
 }
 //ANTI LINE SPAM
@@ -188,7 +188,7 @@ var number = lineArray.length
 
 if(number >= 20) {
     msg.delete()
-    return msg.reply('you cannot line spam in this server!')
+    return msg.reply('no line spamming read rules if needed')
     
 }
 }catch(err) {
