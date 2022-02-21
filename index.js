@@ -1,19 +1,17 @@
 const { Client, Collection, MessageEmbed, Message, Discord } = require("discord.js");
 const { token, clientId, clientSecret } = require('./config.json')
-const fs = require('fs')
-const xp = require("simply-xp")
-const express = require("express")
-const os = require("os")
-const app = express()
-const DiscordOauth2 = require("discord-oauth2")
-const cookieParser = require('cookie-parser');
 const usersMap = new Map();
 const LIMIT = 5;
 const TIME = 90000;
 const DIFF = 5000;
-const Fs = require('fs')
+const fs = require('fs')
 const ms = require('ms')
-
+const express = require("express")
+const os = require("os")
+const app = express()
+const ultrax = require('ultrax')
+const DiscordOauth2 = require("discord-oauth2")
+const cookieParser = require('cookie-parser');
 
 const client = new Client({
     intents: 32767,
@@ -23,13 +21,11 @@ const client = new Client({
 module.exports = client;
 
 const logs = require('discord-logs');
-const res = require("express/lib/response");
-const req = require("express/lib/request");
-logs(client, {
-    debug: true
-});
-app.enable("trust proxy") 
-app.set("etag", false) 
+
+
+
+app.enable("trust proxy") // if the ip is ::1 it means localhost
+app.set("etag", false) // disable cache
 app.use(express.static(__dirname + "/website"))
 app.set("views", __dirname)
 app.set("view engine", "ejs")
@@ -38,19 +34,6 @@ process.oauth = new DiscordOauth2({
     clientId: clientId,
     clientSecret: clientSecret,
     redirectUri: "http://localhost:90/callback"
-})
-app.get("/", async (req, res) => {
-
-    const users = client.users.cache.size
-    const guilds = client.guilds.cache.size
-    
-
-    let file = fs.readFileSync("./website/html/home.ejs", { encoding: "utf8" })
-    file = file.replace("$$guilds$$", guilds)
-    file = file.replace("$$users$$", users)
-
-    res.send(file)
-    // res.sendFile('./website/html/home.html', { root: __dirname })
 })
 let files = fs.readdirSync("./website/public").filter(f => f.endsWith(".js"))
 // Looping thru all files in it
@@ -64,8 +47,6 @@ files.forEach(f => {
         console.log(`[Dashboard] - Loaded ${file.name}`)
     }
 })
-
-
 
 
 
@@ -219,7 +200,7 @@ if(number >= 20) {
             await msg.reply('we do not tolerate this language')
             msg.delete()
 
-            var warnsJSON = JSON.parse(Fs.readFileSync('./warnInfo.json'))
+            var warnsJSON = JSON.parse(fs.readFileSync('./warnInfo.json'))
             
 
             if(!warnsJSON[msg.author.id]) {
@@ -227,17 +208,17 @@ if(number >= 20) {
                     warns: 0
                 }
 
-                Fs.writeFileSync('./warnInfo.json' , JSON.stringify(warnsJSON))
+                fs.writeFileSync('./warnInfo.json' , JSON.stringify(warnsJSON))
             }
 
             warnsJSON[msg.author.id].warns += 1
-            Fs.writeFileSync('./warnInfo.json' , JSON.stringify(warnsJSON))
+            fs.writeFileSync('./warnInfo.json' , JSON.stringify(warnsJSON))
 
 
             setTimeout(function() {
 
                 warnsJSON[msg.author.id].warns -= 1
-                Fs.writeFileSync('./warnInfo.json' , JSON.stringify(warnsJSON))
+                fs.writeFileSync('./warnInfo.json' , JSON.stringify(warnsJSON))
             }, ms('24h'))
 
             const warnEm = new MessageEmbed()
@@ -292,11 +273,11 @@ if(number >= 20) {
 
 client.on('guildMemberAdd' , async(member) => {
 
-let warnsJSON = JSON.parse(Fs.readFileSync('./warnInfo.json'));
+let warnsJSON = JSON.parse(fs.readFileSync('./warnInfo.json'));
   warnsJSON[member.id] = {
                 warns: 0
             }
-            Fs.writeFileSync('./warnInfo.json', JSON.stringify(warnsJSON));
+            fs.writeFileSync('./warnInfo.json', JSON.stringify(warnsJSON));
 })
 
 

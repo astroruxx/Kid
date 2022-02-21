@@ -1,5 +1,5 @@
 const fs = require('fs')
-const client = require("../../index").clien
+const client = require("../../index")
 
 module.exports = {
     name: "/",

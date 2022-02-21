@@ -2,6 +2,9 @@ const client = require("../index");
 const {Discord, MessageEmbed} = require('discord.js')
 
 client.on("messageCreate", async (message) => {
+    process.on('unhandledRejection', console.error); // anti-crash
+module.exports = new Event("messageCreate", async (client, message) => {
+    if (message.author.bot) return;
     if (
         message.author.bot ||
         !message.guild ||
@@ -33,4 +36,4 @@ client.on("messageCreate", async (message) => {
     }
 
 })
-
+})
