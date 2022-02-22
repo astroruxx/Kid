@@ -1,10 +1,7 @@
 const client = require("../index");
-const {Discord, MessageEmbed} = require('discord.js')
+const {MessageEmbed, Discord} = require("discord.js")
 
 client.on("messageCreate", async (message) => {
-    process.on('unhandledRejection', console.error); // anti-crash
-module.exports = new Event("messageCreate", async (client, message) => {
-    if (message.author.bot) return;
     if (
         message.author.bot ||
         !message.guild ||
@@ -17,23 +14,15 @@ module.exports = new Event("messageCreate", async (client, message) => {
         .trim()
         .split(/ +/g);
 
-    let command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
-    
-
-    
+    const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
     if (!command) command = client.commands.get(client.aliases.get(cmd)) // I have already added it, then add
     if (command) {
-        const embed = new MessageEmbed()
-        .setTitle('You do not have the permissions required')
-        .setDescription(`You need \`${command.UserPerms || []}\` Permissions`)
         // User Perms
-        if (!message.member.permissions.has(command.UserPerms || [])) return message.reply({embeds: [embed]}) // Added this
+        if (!message.member.permissions.has(command.UserPerms || [])) return message.channel.send(`You need \`${command.UserPerms || []}\` Permissions`) // Added this
 
         // Bot Perms
         if (!message.guild.me.permissions.has(command.BotPerms || [])) return message.channel.send(`I need \`${command.BotPerms || []}\` Permissions`)
 
         await command.run(client, message, args, Discord) // <= discord over there
-    }
-
-})
+    } // This should be it lets test it out :D
 })
