@@ -15,7 +15,7 @@ client.on("messageCreate", async (message) => {
         .split(/ +/g);
 
     const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
-    if (!command) command = client.commands.get(client.aliases.get(cmd)) // I have already added it, then add
+    if (!command) return // I have already added it, then add
     if (command) {
         // User Perms
         if (!message.member.permissions.has(command.UserPerms || [])) return message.channel.send(`You need \`${command.UserPerms || []}\` Permissions`) // Added this

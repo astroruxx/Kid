@@ -1,6 +1,6 @@
 {
 	"token": "OTM3MDY5Mzg0NzM0NzY5MTky.YfWX3w.5IEEHrA2MMvumOzl-OzOM3GOkO4",
-	"prefix": ">",
+	"prefix": "cap ",
 	"mongooseConnectionString": "mongodb+srv://Winter:Soldier@cluster0.npqr0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
 	"clientSecret": "5xDw0GUycx-eqv1YVAzcXypEVlE4y5_5",
 	"clientId": "937069384734769192",
