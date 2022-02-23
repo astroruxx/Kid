@@ -18,6 +18,7 @@ module.exports = {
 
     try {
       member.setNickname(arguments);
+      message.reply('Nick name was set')
     } catch (err) {
       console.log(err);
       message.reply(

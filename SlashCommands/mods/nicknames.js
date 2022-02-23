@@ -19,7 +19,7 @@ module.exports = {
             .setTitle(`Nickname Rules`)
             .setColor('RANDOM')
             .setDescription(`
-            No blank nicknames.
+            No blank nicknames. 
             No inappropriate nicknames.
             No sexually explicit nicknames.
             No offensive nicknames.

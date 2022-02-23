@@ -6,8 +6,11 @@ const {
 const { user } = require('../index');
 Levels.setURL(mongooseConnectionString);
 const client = require('../index');
-
-client.on("messageCreate", async (message) => {
+    /** 
+     * @param {Message} message 
+     * @param {String[]} args 
+     */
+client.on("messageCreate", async (message, args, client, Discord) => {
     if (message.author.bot) return;
     if (!message.guild) return;
     const randomxp = Math.floor(Math.random() * 10) + 1;
