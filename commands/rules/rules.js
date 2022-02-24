@@ -77,6 +77,7 @@ module.exports = {
        .setColor('NAVY')
        .setImage('https://i.imgur.com/g9TQKal.png')
         message.channel.send({
+            content: '<@&938485402656981022>',
             embeds: [embed]
         })
     },
