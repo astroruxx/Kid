@@ -16,7 +16,7 @@ const modmailClient = new ModMailClient({
             return {
                 const: embed = new MessageEmbed()
                     .setTitle('Modmail')
-                    .setDescription(`<@!${user.id}>. \nHere you can add any question about me @${client.user.tag}, Or report anything serious`)
+                    .setDescription(`<@!${user.id}>. \nYou have been connected to the staff team\nYou can Suggest anything you would like\nSome examples are, A bot command for me(give code)\nModeration Questions, Reporting Users.(give user id)\nThank you for contacting us, Please give the mods atleast 48 hours to respond or read your message.\nYour Cooperation is our greatest ally. `)
                     .setThumbnail(user.displayAvatarURL()),
                     embeds: [embed]
                     

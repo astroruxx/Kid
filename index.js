@@ -196,8 +196,12 @@ if(number >= 20) {
             var emojiGuild = client.guilds.cache.find(guild => guild.name === 'GITBASHED') //PUT YOUR GUILD NAME HERE
              //PUT YOUR EMOJI NAME HERE
 
-
-            await msg.reply('we do not tolerate this language')
+            const badowordem = new MessageEmbed()
+            .setColor('RED')
+            .setTitle('You have been warned')
+            .setDescription('[Auto Mod] Warned for using filtered words')
+            .addField('CAUTION', 'You will be muted if you continue')
+            await msg.reply({embeds: [badowordem]})
             msg.delete()
 
             var warnsJSON = JSON.parse(fs.readFileSync('./warnInfo.json'))
@@ -224,7 +228,7 @@ if(number >= 20) {
             const warnEm = new MessageEmbed()
             .setColor('YELLOW')
             .setTitle(`You have been warned in ${msg.guild.name}`)
-            .setDescription('You have recieved a warning from the moderation system')
+            .setDescription('[AutoMod] You have been warned')
             .addField('Reason' , '[AutoMod] Using filtered words')
             .addField('Expires' , '24h')
 
@@ -239,7 +243,8 @@ if(number >= 20) {
             if(Number.isInteger(warnsJSON[msg.author.id].warns / 3)) {
                 const mutedEm = new MessageEmbed()
                 .setColor('RED')
-                .setDescription(`**${msg.member.user.username}** has been muted for continuous infractions`)
+                .setDescription(`**${msg.member.user.username}** has been muted.`)
+                .addField('**Reason**', 'continous infractions')
                 msg.channel.send({embeds: [mutedEm]})
 
                 const muteRole = msg.guild.roles.cache.find(r => r.name.toString() === '『🔇』Muted')
@@ -249,7 +254,7 @@ if(number >= 20) {
                 const yougotmuted = new MessageEmbed()
                 .setColor('RED')
                 .setTitle(`You have been muted in ${msg.guild.name}`)
-                .setDescription('You have been muted after 3 infractions')
+                .setDescription('[AutoMod] You have been muted')
                 .addField('Reason' , 'Multiple AutoMod Infractions')
                 .addField('Expires' , '2h')
 
