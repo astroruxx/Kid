@@ -133,7 +133,6 @@ client.on('message', async(message) => {
     else {
         let fn = setTimeout(() => {
             usersMap.delete(message.author.id);
-            console.log('map remove.')
         }, TIME);
         usersMap.set(message.author.id, {
             msgCount: 1,
@@ -152,7 +151,7 @@ client.on('message', async(msg) => {
     if(!msg.guild) return;
     if(msg.content.length >= 150) {
     msg.delete();
-   return msg.channel.send(`${msg.author} , do not send long messages`)
+   return msg.channel.send(`${msg.author} , do not send long messages in this server`)
      
     }
 
@@ -160,7 +159,7 @@ if(msg.mentions.users.size > 2 && !msg.member.hasPermission('ADMINISTRATOR') && 
 
 
 msg.delete()
-return msg.reply('No mass mentions allowed.')
+return msg.reply('You are not allowed mass mentions')
 
 }
 //ANTI LINE SPAM
@@ -188,9 +187,7 @@ if(number >= 20) {
         return msg.channel.send('you cannot send links in this server!')
       }
 
-      
-
-    var array = ['banana' , 'words', 'go' , 'here', 'poop'];
+    var array = ['banana' , 'words', 'go' , 'here', 'poop', '@everyone'];
  
         if(array.some(w =>  ` ${msg.content.toLowerCase()} `.includes(` ${w} `))){
             var emojiGuild = client.guilds.cache.find(guild => guild.name === 'GITBASHED') //PUT YOUR GUILD NAME HERE
