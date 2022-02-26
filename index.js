@@ -187,7 +187,7 @@ if(number >= 20) {
         return msg.channel.send('you cannot send links in this server!')
       }
 
-    var array = ['banana' , 'words', 'go' , 'here', 'poop', '@everyone'];
+    var array = ['banana' , 'words', 'go' , 'here', 'poop'];
  
         if(array.some(w =>  ` ${msg.content.toLowerCase()} `.includes(` ${w} `))){
             var emojiGuild = client.guilds.cache.find(guild => guild.name === 'GITBASHED') //PUT YOUR GUILD NAME HERE

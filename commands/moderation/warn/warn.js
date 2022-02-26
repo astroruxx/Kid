@@ -61,7 +61,6 @@ module.exports = {
         .setDescription(`You have been warned`)
         .addField('Reason', `${reason}`)
         const SendEm = await message.channel.send({embeds: [embed]});
-        message.delete()
         setTimeout(() => {
             SendEm.delete()
              }, 10000);

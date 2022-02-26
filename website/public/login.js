@@ -17,7 +17,8 @@ module.exports = {
             }
             if (!decoded) return res.redirect(url);
             let data = await schema.findOne({
-                _id: decoded.uuid
+                _id: decoded.uuid,
+                userID: decoded.userID
             });
             if (!data) res.redirect(url);
             else {

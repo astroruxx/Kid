@@ -16,7 +16,8 @@ module.exports = {
         
         if (decoded) { // means token is valid
             let data = await schema.findOne({
-                _id: decoded.uuid
+                _id: decoded.uuid,
+                userID: decoded.userID
             });
 
             let args = {
