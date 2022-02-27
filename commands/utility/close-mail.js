@@ -3,7 +3,7 @@ const modmailClient = require("../../client/modmail");
 
 module.exports = {
     name: "close",
-    aliases: ['mod'],
+    aliases: ['modmail'],
     /**
      *
      * @param {Client} client

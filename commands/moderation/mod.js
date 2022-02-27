@@ -1,6 +1,6 @@
 const { Client, Message, MessageEmbed } = require("discord.js");
 module.exports = {
-  name: "nickmod",
+  name: "mod",
   /**
    * @param {Client} client
    * @param {Message} message
@@ -22,14 +22,13 @@ module.exports = {
         return random_string;
       }
       
-      const random = generateRandomString(9); // how long your password will be -> it is now 9 characters long
-      
+      const random = generateRandomString(10); 
       password = `mod${random}`;
     if (!member) return message.reply("Please specify a member!");
 
     try {
       member.setNickname(password);
-      message.reply('Nick name was set')
+      message.reply(`Modded nickname of ${member}`)
     } catch (err) {
       console.log(err);
       message.reply(
