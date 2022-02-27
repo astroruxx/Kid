@@ -4,5 +4,6 @@
 	"mongooseConnectionString": "mongodb+srv://Winter:Soldier@cluster0.npqr0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
 	"clientSecret": "5xDw0GUycx-eqv1YVAzcXypEVlE4y5_5",
 	"clientId": "937069384734769192",
-	"jwt_secret": "1243566377738()#$%awkdjwjdadj"
+	"jwt_secret": "1243566377738()#$%awkdjwjdadj",
+	"antiCrash": true
 }

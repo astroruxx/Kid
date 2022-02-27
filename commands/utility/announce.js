@@ -30,7 +30,6 @@ module.exports = {
 
         if(mention === true) channel.send('@everyone');
    const embed= new MessageEmbed()
-                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                 .setDescription(args.slice(1).join(" "))
                 .setTimestamp()
                 .setColor('RANDOM')
