@@ -1,18 +1,20 @@
 const {setPresence} = require('discord.js');
-const { boost } = require('ultrax');
 const client = require("../index");
 const arrayOfStatus = [
-    'https://astrorux.github.io/',
-    'The Avengers',
-    'Dms',
-    'Netflix',
-    'The Dead'
+    'https://astroruxx.github.io/, WATCHING',
+    'The Avengers, WATCHING',
+    'Spotify, LISTENING',
+    'Netflix, WATCHING',
+    'With The Dead, PLAYING'
 ]
 
 client.on('ready', () =>
-    console.log(`${client.user.tag} is up and ready to go!`),
+    console.log(`Ready for missions`),
     setInterval(() => {
-        client.user.setPresence({ activities: [{ name: arrayOfStatus [Math.floor(Math.random() * arrayOfStatus.length) ], type: 'WATCHING' }]})
+        const random = arrayOfStatus[Math.floor(Math.random() * arrayOfStatus.length)].split(', ')
+        const status = random[0]
+        const mode = random[1]
+        client.user.setActivity(status, {type: mode})
         client.user.setStatus('dnd')
     }, 5000),
     

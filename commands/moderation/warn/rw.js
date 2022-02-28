@@ -3,6 +3,7 @@ const db = require('../../../model/warndb')
 
 module.exports = {
     name: 'remove-warn',
+    aliases: ['rw', 'remove'],
     UserPerms: ['MODERATE_MEMBERS'],
     /** 
      * @param {Client} client 
@@ -22,7 +23,10 @@ module.exports = {
                 let number = parseInt(args[1]) - 1
                 if (isNaN(number)) return message.channel.send("Argument is not a number")
                 data.content.splice(number, 1)
-                message.channel.send('Deleted the warn')
+                const embed = new MessageEmbed()
+                .setTitle('Deleted Warns')
+                .setDescription(`<@!${user.id}> warns have been deleted`)
+                message.channel.send({embeds: [embed]})
                 data.save()
             } else {
                 message.channel.send('This user does not have any warns in this server!')

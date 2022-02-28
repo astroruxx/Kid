@@ -12,7 +12,7 @@ module.exports = {
 
         let mention;
 
-        if(!args.length) return message.channel.send('> Usage: y!announce <#channel> <message> <-ping ?>');
+        if(!args.length) return message.channel.send('> Usage: >ac <#channel> <message> <-ping ?>');
 
         const channel = message.mentions.channels.first();
         if(!channel) return message.reply('Please specify a channel!');
@@ -30,7 +30,6 @@ module.exports = {
 
         if(mention === true) channel.send('@everyone');
    const embed= new MessageEmbed()
-                .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
                 .setDescription(args.slice(1).join(" "))
                 .setTimestamp()
                 .setColor('RANDOM')

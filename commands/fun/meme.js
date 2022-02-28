@@ -1,4 +1,4 @@
-const { Client, Mess, MessageEmbed, Message, Interaction } = require('discord.js');
+const { Client,  MessageEmbed, Message, Interaction } = require('discord.js');
 const axios = require("axios");
 const client = require('../..');
 

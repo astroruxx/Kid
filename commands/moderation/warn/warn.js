@@ -4,6 +4,8 @@ const {
     MessageEmbed
 } = require('discord.js');
 const warndb = require('../../../model/warndb');
+const fs = require('fs')
+const ms = require('ms')
 
 module.exports = {
     name: 'warn',
@@ -46,19 +48,77 @@ module.exports = {
 
         })
         const embed = new MessageEmbed()
-        .setThumbnail(`${user.displayAvatarURL({dynamic: true})}`)
         .setColor('RANDOM')
-        .setTitle(`${user.id} you have been warned for ${reason}`)
+        .setTitle(`${user.user.username} you have been warned for ${reason}`)
         .setDescription('if you keep up this behavior you will be kicked or banned')
+        const channelembed = new MessageEmbed()
+        .setColor('GREEN')
+        .setTitle(`${user.displayName}, warned by ${message.author.tag}`)
+        .setDescription(`Reason: ${reason}`)
         const dmembed = new MessageEmbed()
-        .setTitle(`${user.id} has warned you`)
-        .setDescription(`reason: ${reason}`)
-        .setColor('RANDOM')
-        .setImage(`${user.displayAvatarURL({dynamic: true})}`)
+        .setColor('YELLOW')
+        .setTitle(`${message.author.tag} has warned you`)
+        .setDescription(`You have been warned`)
+        .addField('Reason', `${reason}`)
+        const SendEm = await message.channel.send({embeds: [embed]});
+        setTimeout(() => {
+            SendEm.delete()
+             }, 10000);
+        client.channels.fetch('938485405429411906').then(channel => channel.send({embeds: [channelembed]}))
+        await user.send({embeds: [dmembed]})
+        
+    var warnsJSON = JSON.parse(fs.readFileSync('/Users/someone/Documents/GitHub/Captain-America/warnInfo.json'))
+            
 
-        message.channel.send({embeds: [embed]})
-        client.channels.fetch('937071230190768167').then(channel => channel.send({embeds: [embed]}))
-        user.send({embeds: [dmembed]})
+        if(!warnsJSON[message.author.id]) {
+            warnsJSON[message.author.id] = {
+                warns: 0
+            }
 
+            fs.writeFileSync('/Users/someone/Documents/GitHub/Captain-America/warnInfo.json' , JSON.stringify(warnsJSON))
+        }
+
+        warnsJSON[message.author.id].warns += 1
+        fs.writeFileSync('/Users/someone/Documents/GitHub/Captain-America/warnInfo.json' , JSON.stringify(warnsJSON))
+
+
+        setTimeout(function() {
+
+            warnsJSON[message.author.id].warns -= 1
+            fs.writeFileSync('/Users/someone/Documents/GitHub/Captain-America/warnInfo.json' , JSON.stringify(warnsJSON))
+        }, ms('24h')) 
+
+        if(Number.isInteger(warnsJSON[message.author.id].warns / 3)) {
+            const mutedEm = new MessageEmbed()
+            .setColor('RED')
+            .setDescription(`**${message.member.user.username}** has been muted.`)
+            .addField('**Reason**', 'continous infractions')
+            msg.channel.send({embeds: [mutedEm]})
+
+            const muteRole = message.guild.roles.cache.find(r => r.name.toString() === '『🔇』Muted')
+            const user = message.member
+            user.roles.add(muteRole.id)
+
+            const yougotmuted = new MessageEmbed()
+            .setColor('RED')
+            .setTitle(`You have been muted in ${message.guild.name}`)
+            .setDescription('[AutoMod] You have been muted')
+            .addField('Reason' , 'Multiple AutoMod Infractions')
+            .addField('Expires' , '2h')
+
+            try {
+
+                message.author.send({embeds: [yougotmuted]})
+
+            }catch(err) {
+
+            }
+
+            setTimeout(function () {
+                user.roles.remove(muteRole.id)
+            }, ms('2h'));
+        
+        }
+    return;
     }
-}
+    }
