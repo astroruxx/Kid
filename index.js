@@ -89,7 +89,7 @@ client.on('message', async(message) => {
         else {
             ++msgCount;
             if(parseInt(msgCount) === LIMIT) {
-                let muterole = message.guild.roles.cache.find(role => role.id === '938485402698936479');
+                let muterole = message.guild.roles.cache.find(role => role.id === '947336653687635988');
                 if(!muterole) {
                     try{
                         muterole = await message.guild.roles.create({
