@@ -176,16 +176,6 @@ if(number >= 20) {
 
 
 }
- 
-    function isValidURL(string) {
-        var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
-        return (res !== null)
-      };
-      var testContent = msg.content;
-      if(isValidURL(testContent)) {
-         msg.delete();
-        return msg.channel.send('you cannot send links in this server!')
-      }
 
     var array = ['banana' , 'words', 'go' , 'here', 'poop'];
  
