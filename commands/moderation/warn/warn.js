@@ -64,10 +64,10 @@ module.exports = {
         setTimeout(() => {
             SendEm.delete()
              }, 10000);
-        client.channels.fetch('938485405429411906').then(channel => channel.send({embeds: [channelembed]}))
+        client.channels.fetch('947336684431872090').then(channel => channel.send({embeds: [channelembed]}))
         await user.send({embeds: [dmembed]})
         
-    var warnsJSON = JSON.parse(fs.readFileSync('/Users/someone/Documents/GitHub/Captain-America/warnInfo.json'))
+    var warnsJSON = JSON.parse(fs.readFileSync('C:\Users\mannm\Documents\GitHub\Captain-America\warnInfo.json'))
             
 
         if(!warnsJSON[message.author.id]) {
@@ -75,17 +75,17 @@ module.exports = {
                 warns: 0
             }
 
-            fs.writeFileSync('/Users/someone/Documents/GitHub/Captain-America/warnInfo.json' , JSON.stringify(warnsJSON))
+            fs.writeFileSync('C:\Users\mannm\Documents\GitHub\Captain-America\warnInfo.json' , JSON.stringify(warnsJSON))
         }
 
         warnsJSON[message.author.id].warns += 1
-        fs.writeFileSync('/Users/someone/Documents/GitHub/Captain-America/warnInfo.json' , JSON.stringify(warnsJSON))
+        fs.writeFileSync('C:\Users\mannm\Documents\GitHub\Captain-America\warnInfo.json' , JSON.stringify(warnsJSON))
 
 
         setTimeout(function() {
 
             warnsJSON[message.author.id].warns -= 1
-            fs.writeFileSync('/Users/someone/Documents/GitHub/Captain-America/warnInfo.json' , JSON.stringify(warnsJSON))
+            fs.writeFileSync('C:\Users\mannm\Documents\GitHub\Captain-America\warnInfo.json' , JSON.stringify(warnsJSON))
         }, ms('24h')) 
 
         if(Number.isInteger(warnsJSON[message.author.id].warns / 3)) {

@@ -34,7 +34,7 @@ module.exports = {
                 reason: reason,
             }).then(() => {
                 message.reply({embeds: [embed]})
-                client.channels.fetch('938485405429411906').then(channel => channel.send({embeds: [embed]}))
+                client.channels.fetch('947336684431872090').then(channel => channel.send({embeds: [embed]}))
                 send
             })
             if (!send) {
