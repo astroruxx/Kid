@@ -10,7 +10,7 @@ module.exports = {
     const member = message.mentions.members.first();
     function generateRandomString(length) {
         var chars =
-          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.-";
+          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         var random_string = "";
         if (length > 0) {
           for (var i = 0; i < length; i++) {
@@ -22,13 +22,13 @@ module.exports = {
         return random_string;
       }
       
-      const random = generateRandomString(10); 
-      password = `mod${random}`;
+      const random = generateRandomString(11); 
+      password = `modded ${random}`;
     if (!member) return message.reply("Please specify a member!");
 
     try {
       member.setNickname(password);
-      message.reply(`Modded nickname of ${member}`)
+      message.reply(`Nick name was modded to ${password}`);
     } catch (err) {
       console.log(err);
       message.reply(

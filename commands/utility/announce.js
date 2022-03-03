@@ -35,7 +35,7 @@ module.exports = {
                 .setColor('RANDOM')
         channel.send(
           {
-              embeds: [embed]
+              content: args.slice(1).join(" ")
           }
         )
 
