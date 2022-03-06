@@ -7,9 +7,8 @@ module.exports = {
     description: 'set your afk',
     run: async(client, message, args, Discord) => {
         
-        const reason = args.join(' ') || 'no reason was given'
+        const reason = args.join(' ') || 'AFK'
         const user = message.member
-        afk.set(message.author.id, [Date.now(), reason])
         const embed = new MessageEmbed()
         .setTitle('you are now afk')
         .setDescription(`For: ${reason}`)
@@ -22,12 +21,11 @@ module.exports = {
         .setTimestamp()
         .setColor('RANDOM')
         .setThumbnail(user.user.displayAvatarURL({dynamic: true})) 
-        if (message.member.roles.cache.has('938531725066248232')) afk.set(message.author.id, [Date.now(), reason]) 
-       if (message.member.roles.cache.has('938531725066248232')) message.reply({embeds: [embed]})
-       if (message.member.roles.cache.has('938531725066248232')) message.member.setNickname(`[AFK] ${message.author.username}`)
-       if (message.member.roles.cache.has('938485402770210927')) afk.set(message.author.id, [Date.now(), reason]) 
-       if (message.member.roles.cache.has('938485402770210927')) message.reply({embeds: [embed]})
-       if (message.member.roles.cache.has('938485402770210927')) message.member.setNickname(`[AFK] ${message.author.username}`)
+        const nick = message.member.setNickname(`[AFK] ${message.author.username}`)
+        if(!nick) return message.reply('you are afk but i could not change your nickname')
+        if (message.member.roles.cache.has('947336672415203348')) afk.set(message.author.id, [Date.now(), reason]) 
+       if (message.member.roles.cache.has('947336672415203348')) message.reply({embeds: [embed]})
+       if (message.member.roles.cache.has('947336672415203348')) nick
        else return message.reply({embeds: [noembed]})
        
     } 
