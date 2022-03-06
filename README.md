@@ -9,3 +9,5 @@ afk command.
 it is only for my guild so it is not multiguild compatible.
 
 If you would like to use the code just replace the channel ids and stuff
+
+do install all the node modules
