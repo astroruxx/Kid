@@ -14,6 +14,9 @@ client.on("messageCreate", async (message) => {
         .trim()
         .split(/ +/g);
 
+        
+        //More info:
+        //To make https://github.com/ZeroRaidStudios/api.notzerotwo.ml/blob/main/Waifu%20ChatBot.md here more about the chatbot
     const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
     if (!command) return // I have already added it, then add
     if (command) {

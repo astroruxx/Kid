@@ -6,11 +6,11 @@ const client = require('../index')
 const modmailClient = new ModMailClient({
     client,
     guildId: '938485402656981022',
-    category: '938486121518739496',
-    modmailRole: '938486149322768394',
+    category: '947336654769774633',
+    modmailRole: '947336654773977118',
     mongooseConnectionString: 
     'mongodb+srv://Winter:Soldier@cluster0.npqr0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-    transcriptChannel: '938485405941129318',
+    transcriptChannel: '947336684800991275',
     custom: {
         user: user => {
             return {
