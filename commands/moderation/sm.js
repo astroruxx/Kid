@@ -26,8 +26,10 @@ module.exports = {
         .addField('Valid Sm:', '```1-21600s```')
         const valid = new MessageEmbed()
         .setColor('RED')
-        .setTitle('Please Specify a Valid slowmode')
-        .setDescription('Valid slowmodes are positive numbers from 0s - 21600s')        
+        .setTitle('```catch(e) console.log(e)```')
+        .setDescription('Slowmode not valid')
+        .addField('**Reason**', '```Slowmode  is not a integer```')
+        .addField('Valid Sm:', '```1-21600s```')
         if(isNaN(args[0])) return message.reply({embeds: [valid]})
         
         if(args[0] < 0) return message.reply({embeds: [negative]})
