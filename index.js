@@ -169,7 +169,7 @@ var number = lineArray.length
 
 if(number >= 20) {
     msg.delete()
-    return msg.reply('no line spamming read rules if needed')
+    return msg.reply('Line spamming is not allowed. If you continue you will be muted or warned')
     
 }
 }catch(err) {
@@ -243,7 +243,7 @@ if(number >= 20) {
                 .setTitle(`You have been muted in ${msg.guild.name}`)
                 .setDescription('[AutoMod] You have been muted')
                 .addField('Reason' , 'Multiple AutoMod Infractions')
-                .addField('Expires' , '2h')
+                .addField('Expires' , '3h')
 
                 try {
 
@@ -255,7 +255,7 @@ if(number >= 20) {
 
                 setTimeout(function () {
                     user.roles.remove(muteRole.id)
-                }, ms('2h'));
+                }, ms('3h'));
 			
             }
         return;

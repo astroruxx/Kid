@@ -17,7 +17,7 @@ module.exports = {
     run: async (client, message, args, Discord) => {
         try {
             let delamount = args[0];
-            if (isNaN(delamount) || parseInt(delamount <= 0)) return message.reply('Error:')
+            if (isNaN(delamount) || parseInt(delamount <= 0)) return message.reply('```Error, Please specify amount of messages that need to be cleared```')
 
             const error = new MessageEmbed()
             .setTitle('Error')
@@ -27,10 +27,9 @@ module.exports = {
 
             await message.channel.bulkDelete(parseInt(delamount) + 1, true);
             const embed = new MessageEmbed()
-            .setTitle(`Purged messages`)
+            .setTitle('```Deleted Messages```')
             .setColor(`GREEN`)
-            .setThumbnail(`${client.user.displayAvatarURL({dynamic: true})}`)
-            .setDescription(`I have purged ${delamount} messages`)
+            .setDescription('The following amount of messages have been purged ```' + delamount + '```')
 
             await message.channel.send({
                 embeds: [embed]

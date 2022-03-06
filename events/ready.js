@@ -1,24 +1,24 @@
 const {setPresence} = require('discord.js');
 const client = require("../index");
 const arrayOfStatus = [
-    'https://astroruxx.github.io/, WATCHING',
-    'The Avengers, WATCHING',
+    'Agents, WATCHING',
+    'Shield, WATCHING',
     'Spotify, LISTENING',
     'Netflix, WATCHING',
-    'With The Dead, PLAYING'
+    'Data.Args(), STREAMING'
 ]
 
 client.on('ready', () =>
-    console.log(`Ready for missions`),
+    console.log(`[CLIENT] The client has been logged in`),
     setInterval(() => {
         const random = arrayOfStatus[Math.floor(Math.random() * arrayOfStatus.length)].split(', ')
         const status = random[0]
         const mode = random[1]
         client.user.setActivity(status, {type: mode})
         client.user.setStatus('dnd')
+        client.user.setUsername('Shield')
     }, 5000),
     
     
-);
-
+)
    

@@ -21,14 +21,22 @@ module.exports = {
         }
         return random_string;
       }
-      
       const random = generateRandomString(11); 
       password = `modded ${random}`;
-    if (!member) return message.reply("Please specify a member!");
+    if (!member) return message.reply({embeds: [membernotfound]})
 
+      const membernotfound = new MessageEmbed()
+      .setColor('BLURPLE')
+      .setTitle('Api Error')
+      .setDescription('```Error was caught```')
+      .addField('Reason', '```Member Not Specified```')
+      const nicknameset = new MessageEmbed()
+      .setColor('BLURPLE')
+      .setTitle('The nickname was set')
+      .setDescription('Nickname: ```' + password + '```')
     try {
       member.setNickname(password);
-      message.reply(`Nick name was modded to ${password}`);
+      message.reply({embeds: [nicknameset]});
     } catch (err) {
       console.log(err);
       message.reply(

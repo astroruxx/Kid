@@ -48,5 +48,5 @@ module.exports = async (client) => {
     });
 
     // mongoose
-console.log('connected to shield backend servers')
+console.log('[CLIENT] Server Connected')
 };
