@@ -30,12 +30,7 @@ module.exports = {
             const embed = new MessageEmbed()
             .setTitle('```Deleted Messages```')
             .setColor(`GREEN`)
-<<<<<<< Updated upstream
             .setDescription('The following amount of messages have been purged ```' + delamount + '```')
-=======
-            .setThumbnail(`https://tenor.com/view/purge-button-press-fast-gif-17107922`)
-            .setDescription(`I have purged ${delamount} messages`)
->>>>>>> Stashed changes
 
             await message.channel.send({
                 embeds: [embed]
