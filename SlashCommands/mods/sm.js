@@ -6,9 +6,9 @@ module.exports = {
     UserPerms: ['MANAGE_MESSAGES'],
     options: [
         {
-            name: 'arg',
+            name: 'amount',
             type: 'INTEGER',
-            description: 'the number of slowmode',
+            description: 'amount of slowmode',
             required: true
         }
     ],
@@ -19,7 +19,7 @@ module.exports = {
      */
 
     run: async(client, message, args) => {
-        const sm = message.options.getInteger('arg')
+        const sm = message.options.getInteger('amount')
         const tomuch = new MessageEmbed()
         .setColor('RED')
         .setTitle('```catch(e) console.log(e)```')
