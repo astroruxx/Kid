@@ -17,7 +17,7 @@ module.exports = {
         const embed = new MessageEmbed()
         .setColor('RED')
         .setTitle('Kicked')
-        .setDescription(`Kicked ${user}`)
+        .setDescription(`${user} was kicked`)
         .addField('Reason', `${reason}`)
         
         if (user) {
@@ -25,7 +25,7 @@ module.exports = {
                 message.channel.send({embeds: [embed]})
             })
         } else {
-            message.channel.send('cant find user')
+            message.channel.send('Error member is unknown')
         }
 
     }

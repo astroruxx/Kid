@@ -23,14 +23,13 @@ client.on('messageCreate', async (message) => {
     }
 
     const gData = afk.get(message.author.id)
-    const afkEm = new MessageEmbed()
-    .setTitle(`AFK removed`)
-    .setDescription(`Welcome back!`)
-    .setColor('RANDOM')
     if(gData) {
-       if (message.member.roles.cache.has('938531725066248232')) message.member.setNickname(`${message.author.username}`)
-       if (message.member.roles.cache.has('938485402770210927')) message.member.setNickname(`${message.author.username}`)
+       if (message.member.roles.cache.has('947336672415203348')) message.member.setNickname(`${message.author.username}`)
         afk.delete(message.author.id)
-        message.reply({embeds: [afkEm]})
+        message.reply(`<@!${message.author.id}> I have removed your afk. Welcome back`).then(m => {
+            setTimeout(() => {
+                m.delete()
+            }, 5000)}
+        )
     }
 })

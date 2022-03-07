@@ -1,5 +1,5 @@
 const {Message, MessageEmbed} = require('discord.js');
-const clien = require('../../index')
+const client = require('../../index')
 module.exports = {
     name: 'bean',
     UserPerms: ['MANAGE_MESSAGES'],
@@ -14,5 +14,6 @@ module.exports = {
     .setColor('RED')
     .setTitle(`Beaned ${user.displayName} .`)
     message.reply({ embeds: [bean]})
+    user.send('you were beaned u noob');
     }
 }

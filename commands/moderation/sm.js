@@ -14,6 +14,7 @@ module.exports = {
     run: async(client, message, args) => {
         const tomuch = new MessageEmbed()
         .setColor('RED')
+<<<<<<< Updated upstream
         .setTitle('```catch(e) console.log(e)```')
         .setDescription('Slowmode not valid')
         .addField('**Reason**', '```Slowmode to high.```')
@@ -24,6 +25,16 @@ module.exports = {
         .setDescription('Slowmode not valid')
         .addField('**Reason**', '```Slowmode can not be negative```')
         .addField('Valid Sm:', '```1-21600s```')
+=======
+        .setTitle('```Api err.catch(err)```')
+        .setDescription('```SlowMode was not valid```')
+        .addField('Reason', '```Specify amount from 0-21600s```')
+        const negative = new MessageEmbed()
+        .setColor('RED')
+        .setTitle('```Api err.catch(err)```')
+        .setDescription('```SlowMode was not valid```')
+        .addField('Reason', '```Specify amount that is positive```')
+>>>>>>> Stashed changes
         const valid = new MessageEmbed()
         .setColor('RED')
         .setTitle('```catch(e) console.log(e)```')
@@ -39,7 +50,7 @@ module.exports = {
         
 
         const embed = new MessageEmbed()
-        .setTitle(`Slowmode Set to \`${args[0]}\` seconds`)
+        .setTitle(`Slowmode Set to \`${args[0]}\`s`)
         .setColor('GREEN')
         message.channel.send({embeds: [embed]})
     }

@@ -2,7 +2,7 @@ const { Message, MessageEmbed, MessageActionRow, MessageButton } = require('disc
 
 
 module.exports = {
-    name: 'nuke',
+    name: 'delete',
     description: 'nukes a channel',
     
 

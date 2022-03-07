@@ -9,7 +9,7 @@ module.exports = {
     run : async(client, message, args) => {
         const reason = args.slice(1).join(' ') || 'no reason given'
         const Member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-        if(!Member) return message.channel.send('Member is not found.')
+        if(!Member) return message.channel.send('```Error Member Was Not Found```')
         const role = message.guild.roles.cache.find(r => r.name.toString() === '『🔇』Muted')
         if(Member.roles.cache.has(role)) return message.reply(`${Member.displayName} has already been muted`)
         if(!role) {

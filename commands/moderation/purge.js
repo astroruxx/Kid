@@ -21,15 +21,21 @@ module.exports = {
 
             const error = new MessageEmbed()
             .setTitle('Error')
-            .setDescription('You can not delete over 100 messages')
+            .setDescription('```API ERROR.CATCH(e)```')
+            .addField('Invalid Argument', 'Please specify a valid amount ```1-99')
             .setColor('RED')
-            if (parseInt(delamount) > 100) return message.reply({embeds: [error]})
+            if (parseInt(delamount) > 100) return message.reply({embeds: [error]}); console.log('error, user tried to purge over 100 messages')
 
             await message.channel.bulkDelete(parseInt(delamount) + 1, true);
             const embed = new MessageEmbed()
             .setTitle('```Deleted Messages```')
             .setColor(`GREEN`)
+<<<<<<< Updated upstream
             .setDescription('The following amount of messages have been purged ```' + delamount + '```')
+=======
+            .setThumbnail(`https://tenor.com/view/purge-button-press-fast-gif-17107922`)
+            .setDescription(`I have purged ${delamount} messages`)
+>>>>>>> Stashed changes
 
             await message.channel.send({
                 embeds: [embed]
