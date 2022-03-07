@@ -1,5 +1,5 @@
 {
-  "name": "captain-america",
+  "name": "shield",
   "version": "1.0.0",
   "description": "This is a bot that is used for many purposes like \r moderation\r fun\r levels\r afk command.",
   "main": "index.js",
@@ -39,5 +39,6 @@
     "opus": "^0.0.0",
     "reconlx": "^2.5.2",
     "ultrax": "^2.0.1"
-  }
+  },
+  "devDependencies": {}
 }
