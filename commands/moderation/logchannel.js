@@ -15,7 +15,8 @@ module.exports = {
 
         logchanneldb.findOne({
             guild: message.guild.id,
-           channel: message.mentions.channels.first()
+           channel: message.mentions.channels.first(),
+           user: message.mentions.members.first(),
         }, async (err, data) => {
             if (err) throw err;
             if (!data) {
