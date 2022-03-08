@@ -19,6 +19,7 @@
   "dependencies": {
     "@discordjs/voice": "^0.8.0",
     "@distube/spotify": "^1.2.1",
+    "canvacord": "^5.2.3",
     "canvas-constructor": "^5.0.2",
     "chalk-animation": "^1.6.0",
     "cookie-parser": "^1.4.6",
