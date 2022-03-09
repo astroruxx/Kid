@@ -1,7 +1,22 @@
 const client = require("../index");
 const {MessageEmbed, Discord} = require("discord.js")
+const guildData = require('../model/guildlogs')
 
 client.on("messageCreate", async (message) => {
+    try{
+        guildData = await guildModel.findOne({ Guild: message.guild.id });
+        if(!guildData) { 
+          let guild = await guildModel.create({
+              Guild: message.guild.id,
+              GuildName: message.guild.name,
+              LogChannel: Disabled
+        });
+        guild.save();
+        }
+        
+        } catch (err) {
+        return console.log(err);
+        }
     if (
         message.author.bot ||
         !message.guild ||
@@ -15,17 +30,16 @@ client.on("messageCreate", async (message) => {
         .split(/ +/g);
 
         
-        //More info:
-        //To make https://github.com/ZeroRaidStudios/api.notzerotwo.ml/blob/main/Waifu%20ChatBot.md here more about the chatbot
+       
     const command = client.commands.get(cmd.toLowerCase()) || client.commands.find(c => c.aliases?.includes(cmd.toLowerCase()));
-    if (!command) return // I have already added it, then add
+    if (!command) return 
     if (command) {
-        // User Perms
-        if (!message.member.permissions.has(command.UserPerms || [])) return message.channel.send(`You need \`${command.UserPerms || []}\` Permissions`) // Added this
+        
+        if (!message.member.permissions.has(command.UserPerms || [])) return message.channel.send(`You need \`${command.UserPerms || []}\` Permissions`) 
 
-        // Bot Perms
+       
         if (!message.guild.me.permissions.has(command.BotPerms || [])) return message.channel.send(`I need \`${command.BotPerms || []}\` Permissions`)
 
-        await command.run(client, message, args, Discord) // <= discord over there
-    } // This should be it lets test it out :D
+        await command.run(client, message, args, Discord)
+    } 
 })

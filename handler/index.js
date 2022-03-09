@@ -47,6 +47,5 @@ module.exports = async (client) => {
             .commands.set(arrayOfSlashCommands);
     });
 
-    // mongoose
-console.log('[Client] Connected to shield servers')
+console.log('connected to mongoose')
 };

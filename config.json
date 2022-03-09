@@ -1,8 +1,9 @@
 {
-	"token": "token",
+	"token": "OTM3MDY5Mzg0NzM0NzY5MTky.YfWX3w.DD3RoSYvyKdU19QOvAYWjSI5qxI",
 	"prefix": ".",
-	"mongooseConnectionString": "mongoose connection uri",
-	"clientSecret": "client secret",
-	"clientId": "client id",
-	"jwt_secret": "jwt secrect",
+	"mongooseConnectionString": "mongodb+srv://Winter:Soldier@cluster0.npqr0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+	"clientSecret": "5xDw0GUycx-eqv1YVAzcXypEVlE4y5_5",
+	"clientId": "937069384734769192",
+	"jwt_secret": "1243566377738()#$%awkdjwjdadj",
+	"antiCrash": true
 }
