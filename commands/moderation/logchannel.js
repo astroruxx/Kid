@@ -1,7 +1,7 @@
 const {Message, MessageEmbed, MessageActionRow, MessageButton,  Client} = require('discord.js');
-const guildData = require('../../model/guildlogs')
+const logchanneldb = require('../../model/logchanneldb')
 module.exports = {
-    name: 'logchannelset',
+    name: 'logchannel',
      /**
     * 
     * @param {Client} client 
@@ -9,32 +9,32 @@ module.exports = {
     * @param {String[]} args 
     */
     run: async(client, message, args) => {
-        const channel = message.mentions.channels.first().id
-        if(!channel) return message.reply('Please specify a channel')
+        const chan = message.mentions.channels.first()
+        if(!chan) return message.reply('Please specify a channel')
+        const moderator = message.author.id
 
-        guildData = await guildData.findOne({ Guild: message.guild.id });
-    if(!guildData) { 
-     let guild = await guildData.create({
-      Guild: message.guild.id,
-      GuildName: message.guild.name,
-      LogChannel: Disabled
-    });
-    guild.save();
-    }
-    const channelM = await guildData.findOneAndUpdate(
-        {
-        Guild: message.guild.id,
-        LogChannel: channel
-    }
-)
-channel.save();
- 
-const channelem = new MessageEmbed()
-.setColor('GREEN')
-.setTitle('Log channel set')
-.setDescription('A log channel is where ban logs and such will be sent.')
-       
-    message.reply('Log channel updated!')
-    channel.send({embeds: [channelem]})
+        logchanneldb.findOne({
+            guild: message.guild.id,
+           channel: message.mentions.channels.first(),
+           user: message.mentions.members.first(),
+        }, async (err, data) => {
+            if (err) throw err;
+            if (!data) {
+                data = new logchanneldb({
+                    guild: message.guild.id,
+                    channel: message.mentions.channels.first(),
+                    content: [{
+                        moderator: message.author.id,
+                    }]
+                })
+            }
+            data.save()
+        })
+
+        const embed = new MessageEmbed()
+        .setColor('GREEN')
+        .setTitle('Log channel was set')
+        .setDescription(`Log channel was set to ${chan}`)
+    message.reply({embeds: [embed]})
     }
 }

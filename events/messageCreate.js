@@ -1,6 +1,6 @@
 const client = require("../index");
 const {MessageEmbed, Discord} = require("discord.js")
-const guildData = require('../model/guildlogs')
+
 
 client.on("messageCreate", async (message) => {
 

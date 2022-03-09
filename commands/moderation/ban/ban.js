@@ -3,7 +3,7 @@ const {
     Message,
     MessageEmbed
 } = require('discord.js');
-const log = require('../../../model/guildlogs')
+const logchanneldb = require('../../../model/logchanneldb')
 module.exports = {
     name: 'execute',
     UserPerms: ['MODERATE_MEMBERS'],
@@ -15,11 +15,14 @@ module.exports = {
      */
     run: async (client, message, args, Discord) => {
         
-        log.findOne({
-            channel: message.mentions.channels.first()
-        })
+        
         const user = message.mentions.members.first();
         const reason = args.slice(1).join(' ');
+        const channel = logchanneldb.findOne({
+            guild: message.guild.id,
+           channel: message.channelId
+        })
+        console.log(channel)
         const embedd = new MessageEmbed()
         .setColor('RED')
         .setTitle('```Api error.catch(e) ban member not specified```')
@@ -37,7 +40,7 @@ module.exports = {
                 reason: reason,
             }).then(() => {
                 message.reply({embeds: [embed]})
-                client.channels.fetch(channel).then(channel => channel.send({embeds: [embed]}))
+                // client.channels.fetch(channel).then(channel => channel.send({embeds: [embed]}))
                 send
             })
             if (!send) {
