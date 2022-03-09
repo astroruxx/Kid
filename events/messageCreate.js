@@ -3,20 +3,7 @@ const {MessageEmbed, Discord} = require("discord.js")
 const guildData = require('../model/guildlogs')
 
 client.on("messageCreate", async (message) => {
-    try{
-        guildData = await guildModel.findOne({ Guild: message.guild.id });
-        if(!guildData) { 
-          let guild = await guildModel.create({
-              Guild: message.guild.id,
-              GuildName: message.guild.name,
-              LogChannel: Disabled
-        });
-        guild.save();
-        }
-        
-        } catch (err) {
-        return console.log(err);
-        }
+
     if (
         message.author.bot ||
         !message.guild ||
