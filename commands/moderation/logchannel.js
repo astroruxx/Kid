@@ -1,5 +1,5 @@
 const {Message, MessageEmbed, MessageActionRow, MessageButton,  Client} = require('discord.js');
-const logchanneldb = require('../../model/logchanneldb')
+const schema = require('../../model/logs')
 module.exports = {
     name: 'logchannel',
      /**
@@ -12,25 +12,19 @@ module.exports = {
         const chan = message.mentions.channels.first()
         if(!chan) return message.reply('Please specify a channel')
         const moderator = message.author.id
-
-        logchanneldb.findOne({
-            guild: message.guild.id,
-           channel: message.mentions.channels.first(),
-           user: message.mentions.members.first(),
-        }, async (err, data) => {
-            if (err) throw err;
-            if (!data) {
-                data = new logchanneldb({
-                    guild: message.guild.id,
-                    channel: message.mentions.channels.first(),
-                    content: [{
-                        moderator: message.author.id,
-                    }]
-                })
-            }
-            data.save()
-        })
-
+        let data;
+        try {
+           data = await schema.findOne({ GuildId:message.guild.id})
+           if(!data) {
+              data = await schema.create({ GuildId: message.guild.id, ChannelId: chan.id})
+           }
+           await data.save()
+        } catch(e) {
+           console.log(e)
+           message.reply('An Error has occured please try again at a later time.')
+        }
+        
+        
         const embed = new MessageEmbed()
         .setColor('GREEN')
         .setTitle('Log channel was set')

@@ -3,7 +3,7 @@ const {
     Message,
     MessageEmbed
 } = require('discord.js');
-const logchanneldb = require('../../../model/logchanneldb')
+const schema = require('../../../model/logs')
 module.exports = {
     name: 'execute',
     UserPerms: ['MODERATE_MEMBERS'],
@@ -18,18 +18,15 @@ module.exports = {
         
         const user = message.mentions.members.first();
         const reason = args.slice(1).join(' ');
-        const channel = logchanneldb.findOne({
-            guild: message.guild.id,
-           channel: message.channelId
-        })
-        console.log(channel)
+        const data = await schema.findOne({ GuildId: message.guild.id });
+        const channelaa = await client.channels.fetch(data.ChannelId);
         const embedd = new MessageEmbed()
         .setColor('RED')
         .setTitle('```Api error.catch(e) ban member not specified```')
         .addField('Invalid Argument', 'Please specify a valid member')
-        if (!reason || !user) return client.channels.fetch(channel).then(channel => channel.send({embeds: [embedd]}))
+        if (!reason || !user) await message.reply({embeds: [embedd]})
         const embed = new MessageEmbed()
-        .setTitle(`${user.displayName} was banned`)
+        .setTitle(`${user.} was banned`)
         .setDescription(`reason: ${reason}`)
         .setColor('GREEN')
         .setImage(`${user.displayAvatarURL({dynamic: true})}`)
@@ -40,7 +37,6 @@ module.exports = {
                 reason: reason,
             }).then(() => {
                 message.reply({embeds: [embed]})
-                // client.channels.fetch(channel).then(channel => channel.send({embeds: [embed]}))
                 send
             })
             if (!send) {

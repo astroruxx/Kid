@@ -7,11 +7,6 @@ const DIFF = 5000;
 const fs = require('fs')
 const ms = require('ms')
 const express = require("express")
-const os = require("os")
-const app = express()
-const ultrax = require('ultrax')
-const DiscordOauth2 = require("discord-oauth2")
-const cookieParser = require('cookie-parser');
 
 const client = new Client({
     intents: 32767,
@@ -21,32 +16,6 @@ const client = new Client({
 module.exports = client;
 
 const logs = require('discord-logs');
-
-
-
-app.enable("trust proxy") // if the ip is ::1 it means localhost
-app.set("etag", false) // disable cache
-app.use(express.static(__dirname + "/website"))
-app.set("views", __dirname)
-app.set("view engine", "ejs")
-app.use(cookieParser());
-process.oauth = new DiscordOauth2({
-    clientId: clientId,
-    clientSecret: clientSecret,
-    redirectUri: "http://localhost:90/callback"
-})
-let files = fs.readdirSync("./website/public").filter(f => f.endsWith(".js"))
-// Looping thru all files in it
-files.forEach(f => {
-    // requiring the file
-    const file = require(`./website/public/${f}`)
-    if(file && file.name) { // if the file exosts and has a name, do:
-        // set "name" from inside the file as a route, and run the function
-        app.get(file.name, file.run)
-        // logs which files are being loaded
-        console.log(`[Dashboard] - Loaded ${file.name}`)
-    }
-})
 
 
 
@@ -276,4 +245,3 @@ let warnsJSON = JSON.parse(fs.readFileSync('./warnInfo.json'));
 // Initializing the project
 require("./handler")(client);
 client.login(token);
-app.listen(process.env.PORT || 90, () => console.log(`App processed on ${process.env.PORT || 90}`))
