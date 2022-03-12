@@ -19,7 +19,7 @@ module.exports = {
         const user = message.mentions.members.first();
         const reason = args.slice(1).join(' ');
         const data = await schema.findOne({ GuildId: message.guild.id });
-        const channelaa = await client.channels.fetch(schema.ChannelId);
+        const channelaa = await client.channels.fetch(data.ChannelId);
         const embedd = new MessageEmbed()
         .setColor('RED')
         .setTitle('```Api error.catch(e) ban member not specified```')
@@ -30,7 +30,7 @@ module.exports = {
         .setDescription(`reason: ${reason}`)
         .setColor('GREEN')
         const send = message.mentions.members.first().send({embeds: [embed]})
-        const channelsend = client.channels.fetch(channelaa).then(channel => channel.send({embeds: [embed]}))
+        const channelsend = client.channels.fetch(channelaa.id).then(channel => channel.send({embeds: [embed]}))
         if(!channelsend) return message.reply('Please setup a log channel for the bot to work properly')
         if (user) {
 

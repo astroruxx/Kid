@@ -18,6 +18,9 @@ module.exports = {
            if(!data) {
               data = await schema.create({ GuildId: message.guild.id, ChannelId: chan.id})
            }
+           if(data) {
+              data = await schema.findOneAndUpdate({ ChannelId: chan.id})
+           }
            await data.save()
         } catch(e) {
            console.log(e)
