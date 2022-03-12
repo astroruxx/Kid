@@ -14,7 +14,7 @@ module.exports = {
         const moderator = message.author.id
         let data;
         try {
-           data = await schema.findOne({ GuildId:message.guild.id})
+           data = await schema.findOne({ GuildId:message.guild.id })
            if(!data) {
               data = await schema.create({ GuildId: message.guild.id, ChannelId: chan.id})
            }
