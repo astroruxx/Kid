@@ -1,7 +1,7 @@
 {
-	"token": "OTM3MDY5Mzg0NzM0NzY5MTky.YfWX3w.JqZDVT-DjLroib0i6qH31a4JaP0",
+	"token": "OTUzMzM4NTIzMTI0MTI5ODAz.YjDHsA.VKLow4ARPdKvsCxXoHP67AaCDkQ",
 	"prefix": "?",
-	"mongooseConnectionString": "mongodb+srv://Winter:Soldier@cluster0.npqr0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+	"mongooseConnectionString": "mongodb+srv://astro:Judges2$@cluster0.jc1y2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
 	"clientSecret": "5xDw0GUycx-eqv1YVAzcXypEVlE4y5_5",
 	"clientId": "937069384734769192",
 	"jwt_secret": "1243566377738()#$%awkdjwjdadj",
