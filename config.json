@@ -5,5 +5,8 @@
 	"clientSecret": "5xDw0GUycx-eqv1YVAzcXypEVlE4y5_5",
 	"clientId": "937069384734769192",
 	"jwt_secret": "1243566377738()#$%awkdjwjdadj",
-	"antiCrash": true
+	"antiCrash": true,
+	"botsDevID": "930619661626802247",
+	"errorWebhookID": "",
+	"errorWebhookToken": "GOppB5C48uohT2FUHBgcNVYDiKdB5mTqtbhOmH-Ad7J_wtpyA9cD3EgrKizh__1SjYwy"
 }

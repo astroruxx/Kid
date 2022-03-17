@@ -1,6 +1,7 @@
 const {afk} = require('../../Collection')
 const {MessageEmbed, Role} = require('discord.js')
 const client = require('../..')
+const e = require('express')
 
 module.exports = {
     name: 'afk',
@@ -22,11 +23,14 @@ module.exports = {
         .setColor('BLUE')
         .setThumbnail(user.user.displayAvatarURL({dynamic: true})) 
         const nick = message.member.setNickname(`[AFK] ${message.author.username}`)
-        if(!nick) return message.reply('you are afk but i could not change your nickname')
+        if(!nick) {
+            message.reply('you are afk but i could not change your nickname')
+        } 
+        if (message.member.roles.cache.has('947336672415203348')) afk.set(message.author.id, [Date.now(), reason]); else {
         if (message.member.roles.cache.has('947336672415203348')) afk.set(message.author.id, [Date.now(), reason]) 
        if (message.member.roles.cache.has('947336672415203348')) message.reply({embeds: [embed]})
-       if (message.member.roles.cache.has('947336672415203348')) nick
-       else return message.reply({embeds: [noembed]})
+       if (message.member.roles.cache.has('947336672415203348')) nick}
+       
        
     } 
 }

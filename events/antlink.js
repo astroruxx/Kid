@@ -15653,7 +15653,7 @@ client.on('message', async(msg) => {
             const badowordem = new MessageEmbed()
             .setColor('RED')
             .setTitle('You have been warned')
-            .setDescription('[Auto Mod] Warned for sending scam links')
+            .setDescription('[Auto Mod] Sending  Scam Links')
             .addField('CAUTION', 'You will be muted if you continue')
             await msg.reply({embeds: [badowordem]})
             msg.delete()

@@ -21,10 +21,10 @@ client.on('messageCreate', async (message) => {
             message.reply({embeds: [embed]})
         }
     }
-
     const gData = afk.get(message.author.id)
     if(gData) {
        if (message.member.roles.cache.has('947336672415203348')) message.member.setNickname(`${message.author.username}`)
+       if(!message.member.setNickname(`${message.author.username}`)) return message.reply('i could not change your nick name sorry')
         afk.delete(message.author.id)
         message.reply(`<@!${message.author.id}> I have removed your afk. Welcome back`).then(m => {
             setTimeout(() => {
