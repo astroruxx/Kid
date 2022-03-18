@@ -15643,7 +15643,8 @@ client.on('message', async(msg) => {
      "www.profilimekimbakti.xyz",
      "stopcorona.xyz",
      "subesizbasvuru.xyz",
-     "coronavirus.zone"
+     "coronavirus.zone",
+     "www.pornhub.com"
     ];
  
         if(array.some(w =>  ` ${msg.content.toLowerCase()} `.includes(` ${w} `))){

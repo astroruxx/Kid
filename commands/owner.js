@@ -54,11 +54,6 @@ module.exports = {
             if(message.content.toLowerCase().includes('utility')) return message.reply({embeds: [util], components: [utilrow]})
            
 
-const collector = interaction.channel.createMessageCollector({time: 15000 });
-
-collector.on('collect', m => {
-	console.log(`Collected ${m.content}`);
-});
             message.reply('Please specify a categoty for me to search the results of') 
 
     }

@@ -35,7 +35,7 @@ module.exports = {
         if (user) {
 
             await user.ban({
-                reason: reason,
+               reason: reason
             }).then(() => {
                 message.reply({embeds: [embed]})
                 send
