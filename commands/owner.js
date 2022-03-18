@@ -25,7 +25,7 @@ module.exports = {
             new MessageButton()
             .setLabel('Commands Help')
             .setStyle('LINK')
-            .setURL('https://astroruxx.github.io/admin.html')
+            .setURL('https://astroruxx.github.io/Shield/admin.html')
 
         )
         const utilrow = new MessageActionRow()
@@ -33,7 +33,7 @@ module.exports = {
             new MessageButton()
             .setLabel('Commands Help')
             .setStyle('LINK')
-            .setURL('https://astroruxx.github.io/utility.html')
+            .setURL('https://astroruxx.github.io/Shield/utility.html')
 
         )
             if(message.content.toLowerCase().includes('admin')) return message.reply({embeds: [admin], components: [adminrow]})
