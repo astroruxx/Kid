@@ -19,7 +19,6 @@ module.exports = {
         .setColor('GREEN')
         .setTitle('UTILITY COMMANDS')
         .setDescription('**Here at astroruxx.github.io we care about acesibility and we thrive for the succesion of our supporters, The owner and his developers have made utility commands\nPress the button to see all the information on the commands**')
-
         const adminrow = new MessageActionRow()
         .addComponents(
             new MessageButton()
@@ -27,7 +26,13 @@ module.exports = {
             .setStyle('LINK')
             .setURL('https://astroruxx.github.io/Shield/admin.html')
 
-        )
+        ).addComponents(
+            new MessageButton()
+            .setCustomId('delete')
+            .setEmoji('🔨')
+            .setLabel('End Interaction') 
+            .setStyle('DANGER')
+            )
         const utilrow = new MessageActionRow()
         .addComponents(
             new MessageButton()
@@ -35,13 +40,29 @@ module.exports = {
             .setStyle('LINK')
             .setURL('https://astroruxx.github.io/Shield/utility.html')
 
+        ).addComponents(
+            new MessageButton()
+            .setCustomId('delete')
+            .setEmoji('🔨')
+            .setLabel('End Interaction')
+            .setStyle('DANGER')
         )
-            if(message.content.toLowerCase().includes('admin')) return message.reply({embeds: [admin], components: [adminrow]})
-            if(message.content.toLowerCase().includes('mod')) return message.reply({embeds: [admin], components: [adminrow]})
+        const modsend = await message.reply({embeds: [admin], components: [adminrow]})
+        
+            if(message.content.toLowerCase().includes('admin')) return modsend
+            if(message.content.toLowerCase().includes('mod')) return modsend
             if(message.content.toLowerCase().includes('utility')) return message.reply({embeds: [util], components: [utilrow]})
+           
+
+const collector = interaction.channel.createMessageCollector({time: 15000 });
+
+collector.on('collect', m => {
+	console.log(`Collected ${m.content}`);
+});
             message.reply('Please specify a categoty for me to search the results of') 
+
     }
-};
+} 
 
 
 
